@@ -1,0 +1,29 @@
+state,region,ger_2021,college_density_2021,density_2035_recent,required_density_model,density_gap_model,required_annual_density_change,observed_annual_density_change,implied_population_18_23_lakh,additional_colleges_model,reachable_by_density_alone
+Nagaland,Northeast,18.8,25.0,18.0,79.053,61.053,3.861,-0.5,2.76,169.0,True
+Bihar,East,17.1,7.0,7.0,65.871,58.871,4.205,0.0,156.0,9184.0,True
+Assam,Northeast,16.9,15.0,18.5,74.438,55.938,4.246,0.25,40.467,2264.0,True
+Jharkhand,East,18.6,8.0,8.0,62.62,54.62,3.901,0.0,45.75,2499.0,True
+Tripura,Northeast,20.7,11.0,7.5,59.669,52.169,3.476,-0.25,4.909,256.0,True
+Chhattisgarh,Central,19.6,27.0,37.5,78.786,41.286,3.699,0.75,33.963,1402.0,True
+Uttar Pradesh,Central,24.1,29.0,32.5,68.033,35.533,2.788,0.25,288.793,10262.0,True
+Gujarat,West,24.0,32.0,39.0,71.316,32.316,2.808,0.5,74.844,2419.0,True
+Odisha,East,22.1,27.0,41.0,71.701,30.701,3.193,1.0,48.148,1478.0,True
+Punjab,North,27.4,33.0,33.0,62.68,29.68,2.12,0.0,31.636,939.0,True
+Meghalaya,Northeast,25.4,20.0,27.0,55.348,28.348,2.525,0.5,3.85,109.0,True
+West Bengal,East,26.3,15.0,25.5,47.797,22.297,2.343,0.75,100.933,2251.0,True
+Madhya Pradesh,Central,28.9,28.0,42.0,53.429,11.429,1.816,1.0,97.929,1119.0,True
+Haryana,North,33.3,33.0,43.5,45.958,2.458,0.926,0.75,33.03,81.0,True
+Andhra Pradesh,South,36.5,49.0,52.5,52.889,0.389,0.278,0.25,53.102,21.0,True
+Goa,West,35.8,34.0,41.0,39.873,0.0,0.42,0.5,1.824,0.0,True
+Maharashtra,West,35.3,36.0,46.5,43.29,0.0,0.521,0.75,130.333,0.0,True
+Manipur,Northeast,35.4,29.0,39.5,36.007,0.0,0.5,0.75,3.724,0.0,True
+Telangana,South,40.0,52.0,55.5,45.97,0.0,-0.431,0.25,40.058,0.0,True
+Kerala,South,41.3,46.0,53.0,36.285,0.0,-0.694,0.5,31.804,0.0,True
+Himachal Pradesh,North,43.1,47.0,54.0,32.184,0.0,-1.058,0.5,7.426,0.0,True
+Uttarakhand,North,41.8,37.0,37.0,25.868,0.0,-0.795,0.0,13.514,0.0,True
+Tamil Nadu,South,47.0,40.0,57.5,14.131,0.0,-1.848,1.25,70.725,0.0,True
+Karnataka,South,36.2,66.0,100.0,70.739,0.0,0.339,3.75,67.121,0.0,True
+Arunachal Pradesh,Northeast,36.5,25.0,46.0,28.889,0.0,0.278,1.5,1.76,0.0,True
+Sikkim,Northeast,38.6,27.0,44.5,24.938,0.0,-0.147,1.25,0.889,0.0,True
+Mizoram,Northeast,32.3,28.0,45.5,43.793,0.0,1.128,1.25,1.429,0.0,True
+Rajasthan,North,28.6,42.0,73.5,68.279,0.0,1.877,2.25,93.667,0.0,True

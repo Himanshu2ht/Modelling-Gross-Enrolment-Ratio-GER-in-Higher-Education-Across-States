@@ -1,0 +1,197 @@
+{
+  "resource_id": "7edbaeed-65e9-43ad-8f81-730187b70463",
+  "resource_page": "https://www.data.gov.in/resource/statesut-wise-gross-enrolment-ratio-ger-higher-education-based-2011-population-census",
+  "api_endpoint": "https://api.data.gov.in/resource/7edbaeed-65e9-43ad-8f81-730187b70463",
+  "retrieved": "2026-10-25",
+  "metadata": {
+    "total": 36,
+    "title": "States/UT-wise Gross Enrolment Ratio (GER) in Higher Education Based on 2011 Population census projection for 18-23 age group during 2021-22",
+    "desc": "States/UT-wise Gross Enrolment Ratio (GER) in Higher Education Based on 2011 Population census projection for 18-23 age group during 2021-22",
+    "created_date": "2025-03-27T19:33:55Z",
+    "updated_date": "2025-03-27T19:33:55Z",
+    "source": "data.gov.in",
+    "org_type": "Central"
+  },
+  "records": [
+    {
+      "_sl__no_": 1,
+      "states_uts": "Andaman and Nicobar Islands",
+      "ger_2021_22": 22.6
+    },
+    {
+      "_sl__no_": 2,
+      "states_uts": "Andhra Pradesh",
+      "ger_2021_22": 36.5
+    },
+    {
+      "_sl__no_": 3,
+      "states_uts": "Arunachal Pradesh",
+      "ger_2021_22": 36.5
+    },
+    {
+      "_sl__no_": 4,
+      "states_uts": "Assam",
+      "ger_2021_22": 16.9
+    },
+    {
+      "_sl__no_": 5,
+      "states_uts": "Bihar",
+      "ger_2021_22": 17.1
+    },
+    {
+      "_sl__no_": 6,
+      "states_uts": "Chandigarh",
+      "ger_2021_22": 64.8
+    },
+    {
+      "_sl__no_": 7,
+      "states_uts": "Chhattisgarh",
+      "ger_2021_22": 19.6
+    },
+    {
+      "_sl__no_": 8,
+      "states_uts": "Delhi",
+      "ger_2021_22": 49
+    },
+    {
+      "_sl__no_": 9,
+      "states_uts": "Goa",
+      "ger_2021_22": 35.8
+    },
+    {
+      "_sl__no_": 10,
+      "states_uts": "Gujarat",
+      "ger_2021_22": 24
+    },
+    {
+      "_sl__no_": 11,
+      "states_uts": "Haryana",
+      "ger_2021_22": 33.3
+    },
+    {
+      "_sl__no_": 12,
+      "states_uts": "Himachal Pradesh",
+      "ger_2021_22": 43.1
+    },
+    {
+      "_sl__no_": 13,
+      "states_uts": "Jammu and Kashmir",
+      "ger_2021_22": 24.8
+    },
+    {
+      "_sl__no_": 14,
+      "states_uts": "Jharkhand",
+      "ger_2021_22": 18.6
+    },
+    {
+      "_sl__no_": 15,
+      "states_uts": "Karnataka",
+      "ger_2021_22": 36.2
+    },
+    {
+      "_sl__no_": 16,
+      "states_uts": "Kerala",
+      "ger_2021_22": 41.3
+    },
+    {
+      "_sl__no_": 17,
+      "states_uts": "Ladakh",
+      "ger_2021_22": 11.5
+    },
+    {
+      "_sl__no_": 18,
+      "states_uts": "Lakshadweep",
+      "ger_2021_22": 1.1
+    },
+    {
+      "_sl__no_": 19,
+      "states_uts": "Madhya Pradesh",
+      "ger_2021_22": 28.9
+    },
+    {
+      "_sl__no_": 20,
+      "states_uts": "Maharashtra",
+      "ger_2021_22": 35.3
+    },
+    {
+      "_sl__no_": 21,
+      "states_uts": "Manipur",
+      "ger_2021_22": 35.4
+    },
+    {
+      "_sl__no_": 22,
+      "states_uts": "Meghalaya",
+      "ger_2021_22": 25.4
+    },
+    {
+      "_sl__no_": 23,
+      "states_uts": "Mizoram",
+      "ger_2021_22": 32.3
+    },
+    {
+      "_sl__no_": 24,
+      "states_uts": "Nagaland",
+      "ger_2021_22": 18.8
+    },
+    {
+      "_sl__no_": 25,
+      "states_uts": "Odisha",
+      "ger_2021_22": 22.1
+    },
+    {
+      "_sl__no_": 26,
+      "states_uts": "Puducherry",
+      "ger_2021_22": 61.5
+    },
+    {
+      "_sl__no_": 27,
+      "states_uts": "Punjab",
+      "ger_2021_22": 27.4
+    },
+    {
+      "_sl__no_": 28,
+      "states_uts": "Rajasthan",
+      "ger_2021_22": 28.6
+    },
+    {
+      "_sl__no_": 29,
+      "states_uts": "Sikkim",
+      "ger_2021_22": 38.6
+    },
+    {
+      "_sl__no_": 30,
+      "states_uts": "Tamil Nadu",
+      "ger_2021_22": 47
+    },
+    {
+      "_sl__no_": 31,
+      "states_uts": "Telangana",
+      "ger_2021_22": 40
+    },
+    {
+      "_sl__no_": 32,
+      "states_uts": "Dadra and Nagar Haveli and Daman and Diu",
+      "ger_2021_22": 11.2
+    },
+    {
+      "_sl__no_": 33,
+      "states_uts": "Tripura",
+      "ger_2021_22": 20.7
+    },
+    {
+      "_sl__no_": 34,
+      "states_uts": "Uttar Pradesh",
+      "ger_2021_22": 24.1
+    },
+    {
+      "_sl__no_": 35,
+      "states_uts": "Uttarakhand",
+      "ger_2021_22": 41.8
+    },
+    {
+      "_sl__no_": 36,
+      "states_uts": "West Bengal",
+      "ger_2021_22": 26.3
+    }
+  ]
+}

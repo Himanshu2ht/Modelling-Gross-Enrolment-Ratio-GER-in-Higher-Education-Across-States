@@ -1,0 +1,9 @@
+specification,n,loo_r2,loo_rmse,loo_mae,note
+"All 35 units, core indicators",35,0.15764604302172813,11.375037646551263,8.30329308538597,
+"All 35 units, core + UT dummy",35,0.17952293943678466,11.226354554634538,8.624718657409437,
+"Panel, year FE (2017-22)",140,,,,"R2=0.480; density b=0.355, PTR b=-0.215, GPI b=-0.846"
+"Panel, year FE excluding Sikkim",135,,,,"R2=0.585; density b=0.416, PTR b=-0.107, GPI b=2.287; trend=0.845 (SE 0.161)"
+"Panel, state + year FE",140,,,,"R2=0.945; density b=0.398, PTR b=0.343, GPI b=-26.984"
+First differences (within-state),112,,,,"R2=0.395; d_density b=0.752, d_PTR b=0.146, d_GPI b=-28.388"
+OLS excluding Karnataka,27,0.45704775081189153,6.433213314839258,5.311326217475198,"R2=0.586; density b=0.474 (p=0.001), PTR b=-0.136 (p=0.350), GPI b=-1.245 (p=0.892)"
+OLS excluding Karnataka + Bihar,26,0.392126596771427,6.629510317401249,5.528232926975359,"R2=0.555; density b=0.461 (p=0.002), PTR b=-0.208 (p=0.406), GPI b=-1.564 (p=0.869)"

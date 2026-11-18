@@ -1,0 +1,26 @@
+AISHE extraction validation
+============================================================
+
+panel rows: 180 (expected 180)
+states: 36
+rows with missing values: 7
+      state    year  ger_male  ger_female  ger_total  gpi  college_density  avg_enrolment_per_college  ptr
+     Ladakh 2017-18       NaN         NaN        NaN  NaN              NaN                        NaN  NaN
+     Ladakh 2018-19       NaN         NaN        NaN  NaN              NaN                        NaN  NaN
+Lakshadweep 2017-18       3.1        12.4        7.6 4.00              NaN                        NaN 12.0
+Lakshadweep 2018-19       3.3        11.7        7.3 3.52              NaN                        NaN 12.0
+Lakshadweep 2019-20       3.4        11.7        7.4 3.50              NaN                        NaN 12.0
+Lakshadweep 2020-21       3.3        11.4        7.2 3.48              NaN                        NaN 13.0
+Lakshadweep 2021-22       0.3         1.9        1.1 6.33              NaN                        NaN  9.0
+
+Table 42 vs Table 4: max |density diff| = 0.000
+Table 42 vs Table 4: max |enrolment diff| = 0.000
+GER 2021-22 vs OGD: max abs diff = 0.000 (n = 36)
+
+GPI vs female/male GER: max abs diff = 0.005
+
+Headline checks (2021-22):
+  All-India GER (Table 19): 28.4
+  Karnataka college density: 66.0
+  Bihar PTR: 64.0
+  Kerala GPI: 1.44

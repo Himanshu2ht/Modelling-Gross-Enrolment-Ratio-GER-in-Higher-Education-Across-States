@@ -1,0 +1,178 @@
+{
+  "parameters": {
+    "b_density": 0.3528412246902524,
+    "b_ptr": -0.18942413613883255,
+    "b_gpi": 0.5078618180320866,
+    "trend": 0.8662658222843029,
+    "trend_se": 0.1739088255742714,
+    "resid_sd": 6.314845970921043,
+    "ols_r2": 0.5426861282613986
+  },
+  "horizon_years": 14.0,
+  "density_cap": 100.0,
+  "n_bootstrap": 2000,
+  "scenarios": {
+    "damped": "S1 Damped",
+    "recent": "S2 Recent trend",
+    "reform": "S3 NEP reform"
+  },
+  "reference_scenario": "recent",
+  "summary": [
+    {
+      "scenario": "S1 Damped",
+      "key": "damped",
+      "n_states": 28,
+      "n_point_above_50": 3,
+      "n_prob_above_50": 3,
+      "mean_projected_ger": 38.22030001718395,
+      "median_projected_ger": 40.71869361523777,
+      "min_projected_ger": 23.16386075599012,
+      "max_projected_ger": 56.15122147202983,
+      "n_achieved": 0,
+      "n_on_track": 3,
+      "n_at_risk": 6,
+      "n_off_track": 19,
+      "states_point_above_50": "Tamil Nadu; Himachal Pradesh; Karnataka",
+      "states_prob_above_50": "Tamil Nadu; Himachal Pradesh; Karnataka"
+    },
+    {
+      "scenario": "S2 Recent trend",
+      "key": "recent",
+      "n_states": 28,
+      "n_point_above_50": 13,
+      "n_prob_above_50": 13,
+      "mean_projected_ger": 45.79318708234041,
+      "median_projected_ger": 49.49761008481201,
+      "min_projected_ger": 28.457832939148474,
+      "max_projected_ger": 65.30244294405966,
+      "n_achieved": 0,
+      "n_on_track": 13,
+      "n_at_risk": 3,
+      "n_off_track": 12,
+      "states_point_above_50": "Tamil Nadu; Himachal Pradesh; Uttarakhand; Kerala; Telangana; Sikkim; Arunachal Pradesh; Karnataka; Goa; Manipur; Maharashtra; Mizoram; Rajasthan",
+      "states_prob_above_50": "Tamil Nadu; Himachal Pradesh; Uttarakhand; Kerala; Telangana; Sikkim; Arunachal Pradesh; Karnataka; Goa; Manipur; Maharashtra; Mizoram; Rajasthan"
+    },
+    {
+      "scenario": "S3 NEP reform",
+      "key": "reform",
+      "n_states": 28,
+      "n_point_above_50": 13,
+      "n_prob_above_50": 13,
+      "mean_projected_ger": 46.97705284621928,
+      "median_projected_ger": 49.717505930032765,
+      "min_projected_ger": 28.457832939148474,
+      "max_projected_ger": 65.32275741678095,
+      "n_achieved": 0,
+      "n_on_track": 13,
+      "n_at_risk": 4,
+      "n_off_track": 11,
+      "states_point_above_50": "Tamil Nadu; Himachal Pradesh; Uttarakhand; Kerala; Telangana; Sikkim; Arunachal Pradesh; Karnataka; Goa; Manipur; Maharashtra; Mizoram; Rajasthan",
+      "states_prob_above_50": "Tamil Nadu; Himachal Pradesh; Uttarakhand; Kerala; Telangana; Sikkim; Arunachal Pradesh; Karnataka; Goa; Manipur; Maharashtra; Mizoram; Rajasthan"
+    }
+  ],
+  "weighted": {
+    "total_population_18_23_lakh": 1480.3867597237006,
+    "ger_2021": 28.036819707016015,
+    "ger_2035_damped": 35.92230393751913,
+    "ger_2035_recent": 43.511826376387944,
+    "ger_2035_reform": 45.707239444889126,
+    "share_population_below_50_recent": 0.6863843706422301
+  },
+  "states_on_track_reference": [
+    "Tamil Nadu",
+    "Himachal Pradesh",
+    "Uttarakhand",
+    "Kerala",
+    "Telangana",
+    "Sikkim",
+    "Arunachal Pradesh",
+    "Karnataka",
+    "Goa",
+    "Manipur",
+    "Maharashtra",
+    "Mizoram",
+    "Rajasthan"
+  ],
+  "states_on_track_damped": [
+    "Tamil Nadu",
+    "Himachal Pradesh",
+    "Karnataka"
+  ],
+  "states_reform": [
+    "Tamil Nadu",
+    "Himachal Pradesh",
+    "Uttarakhand",
+    "Kerala",
+    "Telangana",
+    "Sikkim",
+    "Arunachal Pradesh",
+    "Karnataka",
+    "Goa",
+    "Manipur",
+    "Maharashtra",
+    "Mizoram",
+    "Rajasthan"
+  ],
+  "required_density_top_gaps": [
+    {
+      "state": "Nagaland",
+      "required_density_model": 79.05343013635292,
+      "density_gap_model": 61.053430136352915,
+      "additional_colleges_model": 169.0
+    },
+    {
+      "state": "Bihar",
+      "required_density_model": 65.87146125358524,
+      "density_gap_model": 58.87146125358524,
+      "additional_colleges_model": 9184.0
+    },
+    {
+      "state": "Assam",
+      "required_density_model": 74.43828844384788,
+      "density_gap_model": 55.93828844384788,
+      "additional_colleges_model": 2264.0
+    },
+    {
+      "state": "Jharkhand",
+      "required_density_model": 62.62025732661554,
+      "density_gap_model": 54.62025732661554,
+      "additional_colleges_model": 2499.0
+    },
+    {
+      "state": "Tripura",
+      "required_density_model": 59.66857182885795,
+      "density_gap_model": 52.16857182885795,
+      "additional_colleges_model": 256.0
+    },
+    {
+      "state": "Chhattisgarh",
+      "required_density_model": 78.7861213753024,
+      "density_gap_model": 41.2861213753024,
+      "additional_colleges_model": 1402.0
+    },
+    {
+      "state": "Uttar Pradesh",
+      "required_density_model": 68.0325095943933,
+      "density_gap_model": 35.532509594393304,
+      "additional_colleges_model": 10262.0
+    },
+    {
+      "state": "Gujarat",
+      "required_density_model": 71.31592318952461,
+      "density_gap_model": 32.31592318952461,
+      "additional_colleges_model": 2419.0
+    },
+    {
+      "state": "Odisha",
+      "required_density_model": 71.70078149701956,
+      "density_gap_model": 30.700781497019562,
+      "additional_colleges_model": 1478.0
+    },
+    {
+      "state": "Punjab",
+      "required_density_model": 62.67986095505996,
+      "density_gap_model": 29.679860955059958,
+      "additional_colleges_model": 939.0
+    }
+  ]
+}

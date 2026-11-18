@@ -1,0 +1,5 @@
+model,grid_searched,selection_rule,selected,internal_cv_rmse,nested_loo_rmse,notes
+Ridge (3 indicators),"alpha in 61 log-spaced values, 1e-03 to 1e+03",RidgeCV generalised cross-validation,alpha=7.943,6.739484758815556,6.739484758815556,Scaling fitted inside the pipeline on each training fold.
+Polynomial + ridge,"degree in {1, 2, 3}; alpha in 61 log-spaced values",LOOCV RMSE for degree; RidgeCV for alpha,"degree=2, alpha=1.000",5.95727838448136,5.95727838448136,degree 1 = 6.739; degree 2 = 5.957; degree 3 = 6.568
+"k-NN (tuned, 3 indicators)","n_neighbors in [3, 5, 7, 9, 11, 15]; weights in ['uniform', 'distance']","GridSearchCV with LOOCV, RMSE","n_neighbors=3, weights=uniform",5.65595238095238,7.591482193251352,Search repeated inside every outer fold; nested score is the honest one because selection cannot see the held-out state.
+Regression tree (tuned),"max_depth in [2, 3, 4]; min_samples_leaf in [3, 5]","GridSearchCV with LOOCV, RMSE","max_depth=2, min_samples_leaf=3",5.68671201814059,7.392868669350197,Search repeated inside every outer fold; nested score is the honest one because selection cannot see the held-out state.

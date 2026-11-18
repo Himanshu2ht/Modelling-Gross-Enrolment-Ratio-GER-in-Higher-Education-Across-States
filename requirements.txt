@@ -1,0 +1,13 @@
+# Tested with Python 3.12.7 on Windows 11 (see README).
+# Versions below are the ones used for the reported results; newer compatible
+# releases should also work.
+pandas>=2.2
+numpy>=1.26
+scikit-learn>=1.4
+statsmodels>=0.14
+scipy>=1.11
+matplotlib>=3.8
+seaborn>=0.13
+pypdf>=4.0
+pdfplumber>=0.11
+openpyxl>=3.1

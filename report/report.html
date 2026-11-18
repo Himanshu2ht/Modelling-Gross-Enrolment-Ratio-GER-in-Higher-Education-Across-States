@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Modelling State-Level GER in Indian Higher Education</title>
+<style>
+@page {
+  size: A4;
+  margin: 15mm 15mm 16mm 15mm;
+}
+* { box-sizing: border-box; }
+html { font-size: 10.3pt; }
+body {
+  font-family: "Cambria", "Georgia", "Times New Roman", serif;
+  color: #111;
+  line-height: 1.42;
+  margin: 0;
+  text-align: justify;
+  hyphens: auto;
+}
+h1.title {
+  font-size: 17.5pt;
+  line-height: 1.2;
+  margin: 0 0 6pt 0;
+  text-align: left;
+  font-weight: 700;
+}
+p.authors { font-size: 11pt; margin: 2pt 0 1pt 0; text-align: left; }
+p.affil { font-size: 9pt; margin: 0 0 2pt 0; text-align: left; color: #222; }
+p.meta { font-size: 8.6pt; margin: 0 0 8pt 0; text-align: left; color: #333; }
+hr.rule { border: 0; border-top: 1.2pt solid #222; margin: 6pt 0 8pt 0; }
+h2 {
+  font-size: 12.2pt;
+  margin: 12pt 0 4pt 0;
+  text-align: left;
+  page-break-after: avoid;
+}
+h3 {
+  font-size: 10.6pt;
+  margin: 9pt 0 3pt 0;
+  text-align: left;
+  font-style: italic;
+  page-break-after: avoid;
+}
+p { margin: 0 0 5pt 0; }
+ul, ol { margin: 2pt 0 6pt 0; padding-left: 16pt; }
+li { margin-bottom: 2pt; }
+strong { font-weight: 700; }
+em { font-style: italic; }
+code {
+  font-family: "Consolas", "DejaVu Sans Mono", monospace;
+  font-size: 8.6pt;
+  background: #f4f4f4;
+  padding: 0 1.5pt;
+}
+pre {
+  font-family: "Consolas", "DejaVu Sans Mono", monospace;
+  font-size: 8.2pt;
+  background: #f6f6f6;
+  border-left: 2pt solid #999;
+  padding: 5pt 7pt;
+  white-space: pre-wrap;
+  page-break-inside: avoid;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 7.9pt;
+  line-height: 1.22;
+  margin: 4pt 0 7pt 0;
+  page-break-inside: avoid;
+}
+table caption {
+  caption-side: top;
+  text-align: left;
+  font-size: 8.4pt;
+  font-style: italic;
+  padding-bottom: 2pt;
+}
+th {
+  border-top: 1.1pt solid #222;
+  border-bottom: 0.7pt solid #222;
+  padding: 2.2pt 2.6pt;
+  text-align: left;
+  vertical-align: bottom;
+  font-weight: 700;
+}
+td {
+  border-bottom: 0.35pt solid #ccc;
+  padding: 2pt 2.6pt;
+  vertical-align: top;
+}
+tr:last-child td { border-bottom: 1.1pt solid #222; }
+figure {
+  margin: 6pt 0 8pt 0;
+  page-break-inside: avoid;
+  text-align: center;
+}
+figure img {
+  max-width: 100%;
+  max-height: 108mm;
+  display: block;
+  margin: 0 auto 3pt auto;
+}
+figcaption {
+  font-size: 8.2pt;
+  font-style: italic;
+  text-align: left;
+  line-height: 1.3;
+  color: #222;
+}
+.small { font-size: 8.6pt; }
+.note {
+  background: #f7f7f7;
+  border-left: 2pt solid #777;
+  padding: 5pt 7pt;
+  font-size: 8.8pt;
+  margin: 6pt 0 8pt 0;
+  page-break-inside: avoid;
+}
+.eq {
+  text-align: center;
+  font-style: italic;
+  margin: 5pt 0 7pt 0;
+  page-break-inside: avoid;
+}
+.refs p {
+  font-size: 8.7pt;
+  text-indent: -14pt;
+  padding-left: 14pt;
+  margin-bottom: 3pt;
+  text-align: left;
+}
+.appendix table { font-size: 6.9pt; page-break-inside: auto; }
+.appendix td, .appendix th { padding: 1.1pt 1.8pt; }
+.appendix tr { page-break-inside: avoid; }
+a { color: #111; text-decoration: none; }
+</style></head>
+<body><h1 class="title">Modelling State-Level Gross Enrolment Ratio in Indian Higher Education: Correlates, Validation and a 2035 Projection</h1>
+
+<p class="authors">Himanshu Jha</p>
+
+<p class="affil">Department of Computer Science, Ramanujan College, University of Delhi, New Delhi, India</p>
+
+<p class="affil">Roll No.: 24570026 / 24020570043 &nbsp;|&nbsp; E-mail: himanshu.jha013@gmail.com</p>
+
+<p class="meta">Course: Machine Learning (B.Sc. (H) Computer Science, Semester VI) &nbsp;|&nbsp; Supervisor: Nikhil Sir &nbsp;|&nbsp; Problem No. 18 from ML_Application_Problems.xlsx &nbsp;|&nbsp; Article type: Original Research Article &nbsp;|&nbsp; November 2026</p>
+
+<hr class="rule">
+
+<p><strong>Abstract.</strong> India's National Education Policy 2020 proposes to raise the Gross Enrolment Ratio (GER) in higher education to 50% by 2035, from an all-India level of 28.4% in 2021-22. National averages conceal a wide State-level spread, and the States that carry most of the 18–23 population are among those furthest from the target. This study asks three questions: how strongly is State GER associated with college density, the pupil–teacher ratio (PTR) and gender parity; do those associations survive out-of-sample and panel checks; and what do plausible trend assumptions imply for 2035-36? The target is the official Open Government Data release for 2021-22, and the predictors are extracted from the All India Survey on Higher Education (AISHE) 2021-22 Final Report and validated against the published tables. The primary sample is 28 States; eight Union Territories are analysed separately. Six regression specifications, including a mean baseline, ordinary least squares, ridge, polynomial ridge, a tuned k-nearest-neighbour model and a tuned regression tree, are compared by leave-one-out cross-validation (LOOCV) and 20 repeats of five-fold cross-validation. OLS explains 54.3% of cross-State variance in-sample and 37.0% out-of-sample (LOOCV RMSE 6.86 GER points), against 8.97 for the baseline. College density is the only robust correlate: one additional college per lakh of the 18–23 population is associated with +0.353 GER points (HC3 p = 0.029; 95% bootstrap interval 0.11–0.66), and the association survives State fixed effects and first differences. PTR changes sign across panel specifications, consistent with reverse causality. Gender parity has no independent association with the aggregate once density and PTR are controlled. Under recent trends, 13 of 28 States reach 50% by 2035-36, but the population-weighted GER is only 43.5% and 68.6% of the 18–23 population lives in States projected below 50%. The binding constraint is capacity expansion in populous low-density States, not the quality and parity levers as measured here.</p>
+<p><strong>Keywords:</strong> gross enrolment ratio; Indian higher education; NEP 2020; college density; ridge regression; leave-one-out cross-validation; panel data; projection; SDG 4</p>
+<h2>1 Introduction</h2>
+<h3>1.1 Policy context</h3>
+<p>India operates one of the largest higher-education systems in the world, yet participation remains low relative to the size of its youth cohort. The National Education Policy 2020 sets a target of 50% GER in higher education, including vocational education, by 2035 [2]. The official all-India GER was 28.4% in 2021-22, an improvement of about one percentage point over 2020-21 but still roughly 22 points short of the goal [1,3]. The Covid-19 period disrupted both enrolment and the administrative data series, so the recent trend is an uncertain guide to the next fourteen years.</p>
+<p>The national figure is an average over units with very different starting points. In 2021-22, State GER ranged from 16.9% in Assam to 47.0% in Tamil Nadu; among Union Territories, Chandigarh reported 64.8% and Dadra and Nagar Haveli and Daman and Diu 11.2%. Fourteen of the 28 States were below 30%, and none of the States had reached 50%. Because education is on the concurrent list and because the demographic weight sits in the low-GER States, the national target is effectively a problem of State-level convergence.</p>
+<h3>1.2 Research questions</h3>
+<p>The project addresses three questions.</p>
+<ol>
+<li><strong>Association.</strong> Conditional on the other indicators, how much independent information do college density, PTR and gender parity carry about State GER?</li>
+<li><strong>Stability.</strong> Do those associations survive out-of-sample prediction, influence diagnostics and within-State panel variation, or are they artefacts of a 28-unit cross-section?</li>
+<li><strong>Projection.</strong> Under explicit and auditable assumptions about density expansion, teacher supply and the common participation trend, which States reach 50% by 2035-36, and what does that imply for the national target?</li>
+</ol>
+<p>The design is deliberately modest about causality. A cross-section of 28 States cannot identify the causal effect of building a college. It can, however, quantify conditional associations, test their fragility, and show how much the 2035 answer depends on assumptions that are usually left implicit.</p>
+<h3>1.3 Contributions</h3>
+<p>The study makes five contributions.</p>
+<ul>
+<li>It assembles an official, India-specific dataset from two government sources and validates the extraction against the published tables and an independent OGD release, with exact checks and stored checksums.</li>
+<li>It compares a baseline and five learned specifications under a leakage-free protocol, including nested hyper-parameter tuning and repeated cross-validation, rather than reporting a single in-sample fit.</li>
+<li>It reports the full inferential apparatus: heteroskedasticity-robust standard errors, bootstrap intervals, standardised coefficients, variance inflation factors, residual diagnostics and influence analysis.</li>
+<li>It uses a 2017-18 to 2021-22 panel to ask whether the cross-sectional pattern survives within-State variation, and it treats the PTR result as a cautionary negative finding rather than a policy lever.</li>
+<li>It produces a change-based projection with three scenarios and a bootstrap that carries coefficient, trend and residual uncertainty, plus a population-weighted check that exposes the gap between counting States and counting people.</li>
+</ul>
+<p>Section 2 reviews related work. Section 3 describes the data and preprocessing, Section 4 the methods, Section 5 the experimental setup, Section 6 the results, Section 7 the discussion, and Section 8 the limitations. Section 9 concludes.</p>
+<h2>2 Related Work</h2>
+<h3>2.1 Determinants of higher-education participation</h3>
+<p>The literature on Indian higher education groups the determinants of participation into demand-side and supply-side factors. Demand-side accounts emphasise household income, secondary completion, aspirations, caste and gender norms, and the expected return to a degree [5,6]. Supply-side accounts emphasise the number and location of institutions, the availability of teachers, programme mix, distance education and affirmative-action capacity. Agarwal [5] and Tilak [6] document large inter-State inequalities in both access and quality, and argue that expansion has often been uneven: private and self-financing institutions cluster in richer and urbanised States, while the poorest States rely more heavily on public provision.</p>
+<p>The policy-visible supply indicators used here are college density (colleges per lakh of the 18–23 population), PTR and the Gender Parity Index (female GER divided by male GER). Each is an imperfect proxy. Density measures nominal access, not capacity, quality or programme fit. PTR is an input measure that can worsen mechanically when enrolment grows faster than teacher hiring. GPI summarises the gender gap in aggregate participation but not field-of-study segregation or completion. These limitations motivate a multivariate and explicitly conditional analysis rather than a bivariate ranking of correlates.</p>
+<h3>2.2 Machine learning and policy analysis</h3>
+<p>Machine learning is increasingly used in policy analysis, but its comparative advantage is prediction rather than causal identification [23,24]. A flexible model can improve out-of-sample forecasts while remaining uninformative about the effect of an intervention. Conversely, a transparent linear model can be preferable for communication and extrapolation even when a flexible learner has a slightly lower cross-validated error. This tension is central here: the polynomial model has the best LOOCV error, but it is not used for projection because it becomes non-monotone outside the observed density range. The linear model is retained because it is interpretable, monotone and defensible at the boundary of the data.</p>
+<p>The statistical toolkit is standard. Ridge regression controls variance in the presence of collinear predictors by adding an L2 penalty [20]. Leave-one-out cross-validation provides an almost unbiased estimate of prediction error for small samples [11], while repeated k-fold cross-validation checks whether a ranking is an artefact of one partition. Heteroskedasticity-robust covariance estimators [12,13], the bootstrap [14], Cook's distance [15] and the classical specification tests [16–18] are used to interrogate the fitted model rather than to decorate it. Panel fixed effects and first differences follow the standard within-estimator logic [26], with cluster-robust inference [27].</p>
+<h3>2.3 Gap addressed</h3>
+<p>Three gaps recur in applied work on GER. First, many analyses are bivariate or use national time series, so they cannot say how much independent information each indicator carries. Second, out-of-sample testing, influence analysis and panel checks are often omitted, which makes a fragile cross-sectional correlation look like a structural relationship. Third, policy discussions frequently jump from a correlation to a 2035 projection without stating the trend assumption or the uncertainty. This study addresses all three with a small, fully documented dataset and a protocol that a reader can re-run.</p>
+<h2>3 Data and Preprocessing</h2>
+<h3>3.1 Target variable</h3>
+<p>The target is the Gross Enrolment Ratio in higher education for the 18–23 age group, all categories, for 2021-22. It comes from the Open Government Data Platform India resource <em>States/UT-wise Gross Enrolment Ratio (GER) in Higher Education Based on 2011 Population Census Projection for 18–23 Age Group during 2021-22</em> (resource ID <code>7edbaeed-65e9-43ad-8f81-730187b70463</code>) [3]. The release contains 36 records: 28 States and eight Union Territories.</p>
+<p>The direct CSV link on the OGD page returns HTTP 403 for automated requests. The data were therefore retrieved through the official OGD API in pages of ten records. The raw JSON, retrieval metadata and SHA-256 checksum are stored in <code>data/raw/</code>, so the target can be audited without relying on a screenshot or a transcription. The OGD values match AISHE Table 19 exactly for all 36 units: the maximum absolute difference is 0.000.</p>
+<h3>3.2 Predictors</h3>
+<p>The predictors come from the AISHE 2021-22 Final Report [1]. Table 1 lists the variables, their definitions and the AISHE tables used. College density is colleges registered with AISHE per lakh of the 18–23 population. PTR is the pupil–teacher ratio for all institutions in regular mode. GPI is female GER divided by male GER. Average enrolment per college is used only in a robustness model because it shares the numerator of GER and is therefore mechanically endogenous.</p>
+<p><strong>Table 1.</strong> Variables, definitions and sources.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Definition</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ger</code></td>
+<td>GER in higher education, 18–23 years, all categories (%)</td>
+<td>OGD 2021-22; AISHE Table 19</td>
+</tr>
+<tr>
+<td><code>ger_male</code>, <code>ger_female</code></td>
+<td>Gender-specific GER (%)</td>
+<td>AISHE Table 19</td>
+</tr>
+<tr>
+<td><code>gpi</code></td>
+<td>Female GER / male GER</td>
+<td>AISHE Table 48</td>
+</tr>
+<tr>
+<td><code>college_density</code></td>
+<td>Colleges per lakh population aged 18–23</td>
+<td>AISHE Tables 4 and 42</td>
+</tr>
+<tr>
+<td><code>ptr</code></td>
+<td>Pupil–teacher ratio, all institutions, regular mode</td>
+<td>AISHE Table 49</td>
+</tr>
+<tr>
+<td><code>avg_enrolment_per_college</code></td>
+<td>Average enrolment per college, including estimated enrolment</td>
+<td>AISHE Tables 4 and 42</td>
+</tr>
+<tr>
+<td><code>colleges</code></td>
+<td>Colleges registered with AISHE, 2021-22</td>
+<td>AISHE Table 4</td>
+</tr>
+<tr>
+<td><code>delta_*_4y</code></td>
+<td>Change from 2017-18 to 2021-22</td>
+<td>Derived from AISHE Tables 42, 48, 49</td>
+</tr>
+</tbody>
+</table>
+<p>The panel covers 2017-18 to 2021-22 and is built from the same AISHE tables. It contains 180 rows (36 units × 5 years). Missing values occur only for Ladakh in 2017-18 and 2018-19 (before it became a Union Territory) and for Lakshadweep, which does not report college counts or density. These are structural non-reports, not random gaps, so they are excluded rather than imputed.</p>
+<h3>3.3 Validation and provenance</h3>
+<p>Extraction integrity is documented in <code>data/processed/extraction_validation.txt</code>. Four checks matter.</p>
+<ul>
+<li>The panel has 180 rows and 36 units, as expected.</li>
+<li>Table 42 and Table 4 agree exactly on college density and average enrolment per college (maximum absolute difference 0.000).</li>
+<li>GPI computed from the reported female and male GER agrees with the published GPI to within 0.005.</li>
+<li>The 2021-22 GER matches the independent OGD release exactly for all 36 units (maximum absolute difference 0.000; n = 36).</li>
+</ul>
+<p>Headline values were also checked by hand: Karnataka college density 66, Bihar PTR 64, Kerala GPI 1.44 and all-India GER 28.4. The AISHE PDF has SHA-256 <code>c4400273cb2d574c793390a900528c825b036667cb0977bbdb8c40f0276d5f15</code>; the OGD JSON has SHA-256 <code>103e741aa4b7aaacc7b2fa4fa67bb96d48a2695e01b7edd3c42ce246aad371c7</code>. Both hashes are recorded in <code>data/raw/SHA256SUMS.txt</code>.</p>
+<h3>3.4 Sample construction</h3>
+<p>The primary estimation sample is the 28 States. The eight Union Territories are excluded from estimation for three reasons. First, their tertiary catchments are city-scale and cross State boundaries: Chandigarh, Delhi and Puducherry draw students from surrounding States, so a UT-level GER is not comparable to a State-level GER. Second, three UTs are high-leverage points in the predictor space. Third, including all 35 units with complete predictors reduces LOOCV R² from 0.370 to 0.158 and raises RMSE from 6.86 to 11.38. The UTs are not discarded: they appear in the descriptive figures and in an indicative projection appendix.</p>
+<p>Lakshadweep is excluded from all multivariate work because college density and average enrolment are not reported. Ladakh has only three panel years. The 28-State sample has no missing values on the three core predictors or the target, so no imputation is used in the primary specification. This is a deliberate choice: imputing a structural non-report would manufacture information and would make the missingness mechanism look benign when it is not.</p>
+<h3>3.5 Preprocessing</h3>
+<p>The preprocessing steps are simple by design, and all of them are either harmless for a linear model or explicitly tested.</p>
+<ul>
+<li><strong>Feature construction.</strong> Density is used as reported (colleges per lakh of the 18–23 population), not per total population. This matters because the age structure differs across States; a density based on total population would understate the capacity gap in high-fertility States.</li>
+<li><strong>Scaling.</strong> Ridge, polynomial and distance-based models are fitted inside a scikit-learn pipeline with <code>StandardScaler</code>. The scaler is estimated on the training fold only. OLS is reported on the raw scale so that coefficients retain their natural units.</li>
+<li><strong>Outliers.</strong> No State is deleted in the primary specification. Deleting high-leverage units can hide the very heterogeneity the analysis is meant to describe. Instead, influence is measured with leverage, studentised residuals and Cook's distance, and the model is re-estimated without Karnataka and without Karnataka plus Bihar. Those checks are reported in Section 6.5.</li>
+<li><strong>Collinearity.</strong> Density and PTR are correlated at −0.66. Variance inflation factors are 1.78, 1.93 and 1.12, all well below the conventional threshold of 5, so the three-indicator model is estimable. Ridge is used as a second check on coefficient stability.</li>
+<li><strong>Leakage.</strong> Average enrolment per college is excluded from the core model because it is mechanically related to GER. All scaling and hyper-parameter selection happen inside the cross-validation loop. The target is never used to construct a predictor.</li>
+<li><strong>Projection boundary.</strong> Density is capped at 100 colleges per lakh in the projection. The observed maximum is 66, so the cap limits, but does not eliminate, extrapolation. It is a modelling choice, not a policy ceiling.</li>
+</ul>
+<h2>4 Methodology</h2>
+<h3>4.1 Notation and baseline</h3>
+<p>Let <i>y</i><sub>s</sub> be the GER of State <i>s</i> in 2021-22 and let <i>D</i><sub>s</sub>, <i>P</i><sub>s</sub> and <i>G</i><sub>s</sub> denote college density, PTR and GPI. The benchmark is the mean predictor, which assigns every State the training-sample mean:</p>
+<p class="eq">ŷ<sub>s</sub> = ȳ<sub>train</sub>&nbsp;&nbsp;(1)</p>
+
+<p>The baseline is not a straw man. With n = 28, it is a demanding test: a model that cannot beat the mean out of sample has no predictive content, however impressive its in-sample R².</p>
+<h3>4.2 Linear model and OLS</h3>
+<p>The primary specification is</p>
+<p class="eq">y<sub>s</sub> = β<sub>0</sub> + β<sub>1</sub>D<sub>s</sub> + β<sub>2</sub>P<sub>s</sub> + β<sub>3</sub>G<sub>s</sub> + ε<sub>s</sub>&nbsp;&nbsp;(2)</p>
+
+<p>OLS chooses the coefficient vector that minimises the residual sum of squares:</p>
+<p class="eq">β̂ = argmin<sub>β</sub> Σ<sub>s</sub> (y<sub>s</sub> − x<sub>s</sub>′β)<sup>2</sup> = (X′X)<sup>−1</sup>X′y&nbsp;&nbsp;(3)</p>
+
+<p>The model is estimated on the raw scale for interpretability. HC3 heteroskedasticity-robust standard errors are reported because the Breusch–Pagan test is a diagnostic, not a licence to assume homoskedasticity [12,13]. Coefficient uncertainty is also summarised with 2,000 bootstrap resamples of the 28 States, using percentile intervals [14]. Standardised coefficients (SD of GER per SD of predictor) make the effect sizes comparable, and VIFs diagnose collinearity.</p>
+<h3>4.3 Ridge regression</h3>
+<p>Ridge adds an L2 penalty to the least-squares objective:</p>
+<p class="eq">β̂<sub>ridge</sub> = argmin<sub>β</sub> Σ<sub>s</sub> (y<sub>s</sub> − x<sub>s</sub>′β)<sup>2</sup> + λ Σ<sub>j</sub> β<sub>j</sub><sup>2</sup>&nbsp;&nbsp;(4)</p>
+
+<p>The penalty shrinks coefficients toward zero and stabilises them when predictors are correlated [20]. The intercept is not penalised. Features are standardised before the penalty is applied, so λ is comparable across variables. λ is selected by <code>RidgeCV</code> over 61 log-spaced values from 10<sup>−3</sup> to 10<sup>3</sup>, using efficient leave-one-out generalised cross-validation inside each training fold. The selected value on the full sample is 7.94.</p>
+<h3>4.4 Polynomial ridge</h3>
+<p>The polynomial specification expands the three features into all squares and pairwise products, then applies ridge:</p>
+<p class="eq">ŷ = β<sub>0</sub> + Σ<sub>j</sub> β<sub>j</sub>x<sub>j</sub> + Σ<sub>j≤k</sub> β<sub>jk</sub>x<sub>j</sub>x<sub>k</sub>&nbsp;&nbsp;(5)</p>
+
+<p>This is a flexible predictive benchmark that can capture diminishing returns or interactions. Degrees 1, 2 and 3 were compared by LOOCV; degree 2 performed best (RMSE 5.96, against 6.74 for degree 1 and 6.57 for degree 3). The degree-2 model is reported. It is not used for projection because its fitted curve turns downward beyond roughly 45–66 colleges per lakh, implying that further expansion eventually reduces GER. That is an extrapolation artefact, not a policy finding.</p>
+<h3>4.5 Non-parametric benchmarks</h3>
+<p>Two tuned non-parametric models test whether a flexible learner can do better with the same three features. k-nearest-neighbour regression averages the outcomes of the k closest training States under Euclidean distance; the search covers k ∈ {3, 5, 7, 9, 11, 15} and uniform or distance weighting. A regression tree recursively partitions the feature space to minimise within-node squared error; the search covers maximum depth ∈ {2, 3, 4} and minimum leaf size ∈ {3, 5}. Both searches use LOOCV and root mean squared error, and both are repeated inside every outer fold of the model comparison. The nested design is important: tuning on the full sample and then evaluating on the same sample would overstate performance.</p>
+<h3>4.6 Validation design</h3>
+<p>Because n = 28, leave-one-out cross-validation is the primary out-of-sample criterion [11]. Each State is held out once, the model is refitted on the other 27, and the held-out prediction is compared with the observed GER. The reported metrics are R², RMSE and MAE. R² is computed on the pooled out-of-sample predictions, so it can be negative when a model is worse than the mean.</p>
+<p>A single partition can flatter or penalise a model by chance. Each specification is therefore also evaluated with 20 repeats of shuffled five-fold cross-validation. The mean and standard deviation of RMSE across repeats are reported. The two protocols answer different questions: LOOCV is the most efficient use of 28 observations, while repeated five-fold CV shows how sensitive the ranking is to the composition of the folds. Hyper-parameter tuning is nested inside both protocols, so no held-out State influences scaling, penalty selection or neighbour choice.</p>
+<h3>4.7 Diagnostics and influence</h3>
+<p>Residual diagnostics include the Shapiro–Wilk test for normality [16], the Breusch–Pagan test for heteroskedasticity [17], the Ramsey RESET test for functional form [18], and the condition number of the design matrix [19]. Influence is measured with leverage, studentised residuals, DFFITS and Cook's distance [15]. The conventional Cook's distance threshold is 4/n = 0.143. Two States exceed it: Karnataka and Nagaland. The model is re-estimated without them to check that the density result is not driven by one or two observations.</p>
+<h3>4.8 Panel and sensitivity checks</h3>
+<p>A short panel is used to ask whether the cross-sectional pattern survives within-State variation. Three specifications are estimated:</p>
+<ul>
+<li><strong>Year fixed effects.</strong> Pooled OLS with year dummies and State-clustered standard errors. Identification comes from within-State changes plus a common annual shift.</li>
+<li><strong>State and year fixed effects.</strong> Adds State dummies, so identification comes only from within-State changes over time.</li>
+<li><strong>First differences.</strong> Regresses the annual change in GER on annual changes in density, PTR and GPI, removing any time-invariant State characteristic.</li>
+</ul>
+<p>The year fixed-effects model also provides the common annual trend used in the projection: the coefficient on 2021-22 divided by four years, with its cluster-robust standard error. A UT-inclusive sensitivity model (35 units, with and without a UT dummy) documents the cost of pooling UTs with States.</p>
+<h3>4.9 Projection to 2035-36</h3>
+<p>The projection is change-based, not level-based:</p>
+<p class="eq">GER<sub>s,2035</sub> = GER<sub>s,2021</sub> + β<sub>D</sub>(D<sub>s,2035</sub> − D<sub>s,2021</sub>) + β<sub>P</sub>(P<sub>s,2035</sub> − P<sub>s,2021</sub>) + β<sub>G</sub>(G<sub>s,2035</sub> − G<sub>s,2021</sub>) + τ h m&nbsp;&nbsp;(6)</p>
+
+<p>where h = 14 years, m is a scenario-specific trend multiplier, and τ = 0.866 GER points per year (SE 0.174) is the common trend from the year fixed-effects panel. The coefficients are the OLS estimates from the 28-State cross-section. The intercept is deliberately excluded: a cross-sectional intercept would embed the 2021-22 level permanently and would forecast that a State with average predictors stays at the sample average forever.</p>
+<p>Three scenarios are defined.</p>
+<ul>
+<li><strong>S1 Damped.</strong> Half the recent annual density change, half the common trend, PTR and GPI unchanged.</li>
+<li><strong>S2 Recent trend (reference).</strong> Full recent annual density change, full common trend, PTR and GPI unchanged.</li>
+<li><strong>S3 NEP reform.</strong> Full density change, PTR converges to min(2021 PTR, 20), GPI converges to 1.05 where below, full common trend.</li>
+</ul>
+<p>The recent annual density change is the 2017-18 to 2021-22 change divided by four. Density is capped at 100 colleges per lakh and floored at 1.</p>
+<p>Uncertainty is propagated with 2,000 bootstrap draws. In each draw, the 28 States are resampled with replacement, the OLS coefficients are re-estimated, the common trend is drawn from N(0.866, 0.174), and a State-level residual is drawn from N(0, 6.315). The same draws are used across scenarios (common random numbers), so differences between scenarios are not confounded by Monte Carlo noise. P(≥50%) is the share of draws at or above the target, and the 5th–95th percentile interval is reported. States are classified as Achieved (GER already ≥50%), On track (P ≥ 0.5), At risk (0.15 ≤ P &lt; 0.5) or Off track (P &lt; 0.15). The 0.5 cut-off is a communication device, not a statistical test; the probability itself is the more informative quantity.</p>
+<h3>4.10 Required density</h3>
+<p>For each State, the model-implied density required by 2035-36 under S2 is obtained by solving equation (6) for D<sub>2035</sub> with GER<sub>2035</sub> = 50 and PTR and GPI held at their 2021 values:</p>
+<p class="eq">D<sup>req</sup><sub>s</sub> = D<sub>s,2021</sub> + [50 − (GER<sub>s,2021</sub> + τh)] / β<sub>D</sub>&nbsp;&nbsp;(7)</p>
+
+<p>The density gap is max(0, D<sup>req</sup> − D<sub>2035</sub>). An indicative additional-college figure multiplies the gap by the implied 18–23 population (colleges<sub>2021</sub> / D<sub>2021</sub>). This is a model-implied illustration, not a costing. It assumes that the linear density coefficient applies far outside the observed range and ignores teacher supply, land, funding and demand.</p>
+<h3>4.11 Software and reproducibility</h3>
+<p>The analysis uses Python 3.12 with pandas, NumPy, scikit-learn, statsmodels, SciPy, matplotlib, pypdf and pdfplumber [10]. The random seed is 42 for every stochastic step. <code>src/run_all.py</code> runs the pipeline end to end; individual scripts can be run separately. All tables are written to <code>outputs/tables/</code> and all figures to <code>outputs/figures/</code> at 300 dpi. <code>src/verify_outputs.py</code> re-reads the artefacts and checks the headline numbers quoted in this report, so a reader can distinguish a reproduction failure from a typo.</p>
+<h2>5 Experimental Setup</h2>
+<p><strong>Sample.</strong> 28 States, 2021-22 cross-section, with no missing values on the three core predictors. The panel has 140 State-year observations for the year fixed-effects model (28 States × 5 years) and 112 first differences.</p>
+<p><strong>Split.</strong> The cross-section is evaluated by LOOCV. There is no random train/test split because, with 28 units, a single split would be too sensitive to which States happen to land in the test set. The repeated five-fold protocol provides the stability check.</p>
+<p><strong>Tuning.</strong> Hyper-parameters are selected inside each training fold. Table 4 lists the grids, the selection rule and the values selected on the full sample. The nested LOOCV column is the honest score; the internal score is shown only to make the optimism of non-nested tuning visible.</p>
+<p><strong>Environment.</strong> Python 3.12, scikit-learn 1.9, statsmodels 0.15, pandas 3.1, NumPy 2.5 and matplotlib 3.11. The pipeline runs on Windows and Linux; <code>run.sh</code> is provided for Linux and <code>README.md</code> documents both. Figures use the Matplotlib "DejaVu Sans" font and a colour-blind-safe palette.</p>
+<p><strong>Reporting conventions.</strong> Tables are numbered in the order in which they are cited. Each table caption names the CSV file in <code>outputs/tables/</code> that contains the same numbers, so the narrative and the artefacts can be cross-checked. Figures are embedded at print resolution. All percentages are GER points unless stated otherwise.</p>
+<h2>6 Results</h2>
+<h3>6.1 Descriptive patterns</h3>
+<p>Table 2 summarises the estimation sample. Mean GER is 30.4%, with a standard deviation of 8.8 points. The distribution is wide and slightly left-skewed: the median (30.6%) is close to the mean, but the minimum (16.9%) is further below the median than the maximum (47.0%) is above it. Fourteen States are below 30%, and none has reached 50%. College density averages 31.0 colleges per lakh, with a range from 7 in Bihar to 66 in Karnataka. PTR averages 24.6 and ranges from 14 in Tamil Nadu to 64 in Bihar. GPI averages 1.06, with ten States below parity and seven at or above 1.2.</p>
+<p><strong>Table 2.</strong> Descriptive statistics, 28 States, 2021-22. (<code>table01_summary_statistics.csv</code>)</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">SD</th>
+<th style="text-align: right;">Min</th>
+<th style="text-align: right;">Median</th>
+<th style="text-align: right;">Max</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GER (%)</td>
+<td style="text-align: right;">30.4</td>
+<td style="text-align: right;">8.8</td>
+<td style="text-align: right;">16.9</td>
+<td style="text-align: right;">30.6</td>
+<td style="text-align: right;">47.0</td>
+</tr>
+<tr>
+<td>College density (per lakh 18–23)</td>
+<td style="text-align: right;">31.0</td>
+<td style="text-align: right;">13.7</td>
+<td style="text-align: right;">7.0</td>
+<td style="text-align: right;">29.0</td>
+<td style="text-align: right;">66.0</td>
+</tr>
+<tr>
+<td>Pupil–teacher ratio</td>
+<td style="text-align: right;">24.6</td>
+<td style="text-align: right;">11.5</td>
+<td style="text-align: right;">14.0</td>
+<td style="text-align: right;">22.5</td>
+<td style="text-align: right;">64.0</td>
+</tr>
+<tr>
+<td>Gender Parity Index</td>
+<td style="text-align: right;">1.06</td>
+<td style="text-align: right;">0.15</td>
+<td style="text-align: right;">0.88</td>
+<td style="text-align: right;">1.02</td>
+<td style="text-align: right;">1.44</td>
+</tr>
+<tr>
+<td>Average enrolment per college</td>
+<td style="text-align: right;">800</td>
+<td style="text-align: right;">394</td>
+<td style="text-align: right;">413</td>
+<td style="text-align: right;">668</td>
+<td style="text-align: right;">2,088</td>
+</tr>
+</tbody>
+</table>
+<p>Table 3 reports Pearson and Spearman correlations. Density has the strongest positive association with GER (r = 0.712; ρ = 0.751), followed by PTR with a negative association (r = −0.612; ρ = −0.645). GPI is weakly associated (r = 0.189; ρ = 0.173), and average enrolment per college is negatively associated (r = −0.460). Density and PTR are themselves correlated at −0.66, which is why the multivariate density coefficient is smaller than the bivariate slope.</p>
+<p><strong>Table 3.</strong> Correlations with GER, 28 States. (<code>table02_correlations.csv</code>, <code>table02b_spearman.csv</code>)</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th style="text-align: right;">Pearson r</th>
+<th style="text-align: right;">Spearman ρ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>College density</td>
+<td style="text-align: right;">0.712</td>
+<td style="text-align: right;">0.751</td>
+</tr>
+<tr>
+<td>Pupil–teacher ratio</td>
+<td style="text-align: right;">−0.612</td>
+<td style="text-align: right;">−0.645</td>
+</tr>
+<tr>
+<td>Gender Parity Index</td>
+<td style="text-align: right;">0.189</td>
+<td style="text-align: right;">0.173</td>
+</tr>
+<tr>
+<td>Average enrolment per college</td>
+<td style="text-align: right;">−0.460</td>
+<td style="text-align: right;">—</td>
+</tr>
+</tbody>
+</table>
+<figure><img alt="Figure 1. State and Union Territory GER in 2021-22, ranked. The southern and hilly States cluster at the top; the Gangetic plain and the Northeast contain most of the low-GER units. Union Territories are shown for context but are excluded from estimation." src="../outputs/figures/fig01_ger_ranked.png"><figcaption>Figure 1. State and Union Territory GER in 2021-22, ranked. The southern and hilly States cluster at the top; the Gangetic plain and the Northeast contain most of the low-GER units. Union Territories are shown for context but are excluded from estimation.</figcaption></figure>
+<p>Figure 1 shows the full ranking of 36 units. Tamil Nadu (47.0), Himachal Pradesh (43.1), Uttarakhand (41.8), Kerala (41.3) and Telangana (40.0) lead the States. Assam (16.9), Bihar (17.1), Jharkhand (18.6), Nagaland (18.8), Chhattisgarh (19.6), Tripura (20.7), Odisha (22.1) and Uttar Pradesh (24.1) trail. The UTs are a separate distribution: Chandigarh (64.8), Puducherry (61.5) and Delhi (49.0) are high, while Dadra and Nagar Haveli and Daman and Diu (11.2) is the lowest unit in the file.</p>
+<figure><img alt="Figure 2. GER against the four candidate correlates, 28 States. Density is positively associated, PTR negatively, GPI weakly, and average enrolment per college negatively." src="../outputs/figures/fig02_correlates.png"><figcaption>Figure 2. GER against the four candidate correlates, 28 States. Density is positively associated, PTR negatively, GPI weakly, and average enrolment per college negatively.</figcaption></figure>
+<p>Figure 2 makes the bivariate patterns visible and also shows why a multivariate model is needed. The density relationship is tight but has notable exceptions: Karnataka has the highest density (66) but a GER of only 36.2, while Tamil Nadu reaches 47.0 with a density of 40. The PTR relationship is negative but is driven partly by the low-density, high-PTR States. The GPI panel is almost flat. Average enrolment per college is negatively related to GER, which is a warning that college size is not a quality proxy: Bihar combines the largest average college (2,088 students) with the lowest density and a GER of 17.1.</p>
+<figure><img alt="Figure 3. Pearson correlation matrix for GER and its correlates, 28 States. Density and PTR are strongly negatively correlated; GPI is weakly correlated with both." src="../outputs/figures/fig03_correlation_heatmap.png"><figcaption>Figure 3. Pearson correlation matrix for GER and its correlates, 28 States. Density and PTR are strongly negatively correlated; GPI is weakly correlated with both.</figcaption></figure>
+<figure><img alt="Figure 4. GER trajectories, 2017-18 to 2021-22. Most States improved, but the gap between the top and bottom groups persisted." src="../outputs/figures/fig04_trajectories.png"><figcaption>Figure 4. GER trajectories, 2017-18 to 2021-22. Most States improved, but the gap between the top and bottom groups persisted.</figcaption></figure>
+<p>Figure 3 confirms the density–PTR collinearity and the weak GPI–GER association. Figure 4 shows that the level differences are persistent: the States at the top in 2017-18 are mostly at the top in 2021-22, and the bottom group improves from a lower base. This persistence is why a cross-sectional model has explanatory power and why a change-based projection is more defensible than a level forecast.</p>
+<h3>6.2 Model comparison</h3>
+<p>Table 5 reports the model comparison. The polynomial ridge model has the lowest LOOCV RMSE (5.96) and the highest LOOCV R² (0.525). OLS with college size is second (6.27; 0.474), followed by ridge with college size (6.42; 0.449), ridge with three indicators (6.74; 0.392) and OLS with three indicators (6.86; 0.370). The tuned tree (7.39; 0.269) and tuned k-NN (7.59; 0.229) are worse than OLS, despite much higher in-sample R² (0.702 and 0.660). The baseline is worst (8.97; −0.075).</p>
+<p><strong>Table 4.</strong> Hyper-parameter grids, selection rule and selected values. (<code>table10_hyperparameter_search.csv</code>)</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Grid searched</th>
+<th>Selection rule</th>
+<th>Selected</th>
+<th style="text-align: right;">Internal RMSE</th>
+<th style="text-align: right;">Nested LOOCV RMSE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ridge (3 indicators)</td>
+<td>α in 61 log-spaced values, 10⁻³ to 10³</td>
+<td>RidgeCV generalised CV</td>
+<td>α = 7.943</td>
+<td style="text-align: right;">6.74</td>
+<td style="text-align: right;">6.74</td>
+</tr>
+<tr>
+<td>Polynomial + ridge</td>
+<td>degree ∈ {1,2,3}; α in 61 values</td>
+<td>LOOCV for degree; RidgeCV for α</td>
+<td>degree 2; α = 1.000</td>
+<td style="text-align: right;">5.96</td>
+<td style="text-align: right;">5.96</td>
+</tr>
+<tr>
+<td>k-NN (tuned)</td>
+<td>k ∈ {3,5,7,9,11,15}; weights ∈ {uniform, distance}</td>
+<td>GridSearchCV, LOOCV, RMSE</td>
+<td>k = 3; uniform</td>
+<td style="text-align: right;">5.66</td>
+<td style="text-align: right;">7.59</td>
+</tr>
+<tr>
+<td>Regression tree (tuned)</td>
+<td>depth ∈ {2,3,4}; min leaf ∈ {3,5}</td>
+<td>GridSearchCV, LOOCV, RMSE</td>
+<td>depth 2; leaf 3</td>
+<td style="text-align: right;">5.69</td>
+<td style="text-align: right;">7.39</td>
+</tr>
+</tbody>
+</table>
+<p>Table 4 is deliberately uncomfortable. The internal scores of the k-NN and tree searches (5.66 and 5.69) are much better than their nested LOOCV scores (7.59 and 7.39). The gap is the optimism of tuning and evaluating on the same 28 States. With n = 28, a grid search can always find a hyper-parameter that fits the sample; the nested protocol reveals that the gain does not generalise. This is one reason the linear model is retained for inference and projection even though it is not the best predictor.</p>
+<p><strong>Table 5.</strong> Model comparison, 28 States. LOOCV is the primary criterion; repeated five-fold CV is a stability check. (<code>table03_model_comparison.csv</code>)</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th style="text-align: right;">LOOCV R²</th>
+<th style="text-align: right;">LOOCV RMSE</th>
+<th style="text-align: right;">LOOCV MAE</th>
+<th style="text-align: right;">5-fold RMSE (mean ± SD)</th>
+<th style="text-align: right;">In-sample R²</th>
+<th style="text-align: right;">Adj. R²</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Polynomial deg 2 + ridge</td>
+<td style="text-align: right;"><strong>0.525</strong></td>
+<td style="text-align: right;"><strong>5.96</strong></td>
+<td style="text-align: right;"><strong>4.97</strong></td>
+<td style="text-align: right;">6.63 ± 0.73</td>
+<td style="text-align: right;">0.730</td>
+<td style="text-align: right;">0.696</td>
+</tr>
+<tr>
+<td>OLS (+ college size)</td>
+<td style="text-align: right;">0.474</td>
+<td style="text-align: right;">6.27</td>
+<td style="text-align: right;">4.82</td>
+<td style="text-align: right;">6.58 ± 0.55</td>
+<td style="text-align: right;">0.659</td>
+<td style="text-align: right;">0.599</td>
+</tr>
+<tr>
+<td>Ridge (+ college size)</td>
+<td style="text-align: right;">0.449</td>
+<td style="text-align: right;">6.42</td>
+<td style="text-align: right;">4.95</td>
+<td style="text-align: right;">6.81 ± 0.58</td>
+<td style="text-align: right;">0.646</td>
+<td style="text-align: right;">0.585</td>
+</tr>
+<tr>
+<td>Ridge (3 indicators)</td>
+<td style="text-align: right;">0.392</td>
+<td style="text-align: right;">6.74</td>
+<td style="text-align: right;">5.54</td>
+<td style="text-align: right;">6.85 ± 0.25</td>
+<td style="text-align: right;">0.528</td>
+<td style="text-align: right;">0.469</td>
+</tr>
+<tr>
+<td>OLS (3 indicators)</td>
+<td style="text-align: right;">0.370</td>
+<td style="text-align: right;">6.86</td>
+<td style="text-align: right;">5.73</td>
+<td style="text-align: right;">7.09 ± 0.37</td>
+<td style="text-align: right;">0.543</td>
+<td style="text-align: right;">0.486</td>
+</tr>
+<tr>
+<td>Regression tree (tuned)</td>
+<td style="text-align: right;">0.269</td>
+<td style="text-align: right;">7.39</td>
+<td style="text-align: right;">6.05</td>
+<td style="text-align: right;">7.76 ± 0.69</td>
+<td style="text-align: right;">0.702</td>
+<td style="text-align: right;">0.665</td>
+</tr>
+<tr>
+<td>k-NN (tuned)</td>
+<td style="text-align: right;">0.229</td>
+<td style="text-align: right;">7.59</td>
+<td style="text-align: right;">6.52</td>
+<td style="text-align: right;">7.32 ± 0.42</td>
+<td style="text-align: right;">0.660</td>
+<td style="text-align: right;">0.618</td>
+</tr>
+<tr>
+<td>Baseline (mean)</td>
+<td style="text-align: right;">−0.075</td>
+<td style="text-align: right;">8.97</td>
+<td style="text-align: right;">7.95</td>
+<td style="text-align: right;">9.00 ± 0.24</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">−0.125</td>
+</tr>
+</tbody>
+</table>
+<p>Three points stand out. First, every learned model beats the mean baseline, but the margin is modest for the three-indicator OLS: LOOCV R² is 0.370, not the 0.543 seen in-sample. The gap is expected with n = 28 and three predictors, and it is a warning against reading the fitted values as forecasts. Second, ridge slightly improves out-of-sample error relative to OLS (6.74 vs 6.86) and shrinks the density coefficient from 0.353 to 0.271. The ranking is not an artefact of one partition: the repeated five-fold RMSE is also lower for ridge (6.85 vs 7.09). Third, the polynomial is the best predictor but the worst model to extrapolate. Figure 11 shows why.</p>
+<p>The augmented model with average enrolment per college improves LOOCV R² to 0.474, but average enrolment is mechanically related to GER: enrolment is the numerator of GER, and a State with a high GER can have a high average college size even if access is low. It is a robustness check, not the preferred specification.</p>
+<figure><img alt="Figure 5. LOOCV RMSE and R² by model, 28 States. Lower RMSE and higher R² are better. The polynomial ridge model is the best predictor; the tuned non-parametric models are worse than OLS out of sample." src="../outputs/figures/fig05_model_comparison.png"><figcaption>Figure 5. LOOCV RMSE and R² by model, 28 States. Lower RMSE and higher R² are better. The polynomial ridge model is the best predictor; the tuned non-parametric models are worse than OLS out of sample.</figcaption></figure>
+<figure><img alt="Figure 6. Leave-one-out predictions against observed GER for ridge and polynomial ridge. The 45-degree line is perfect prediction. The polynomial tracks the middle of the distribution better but is less stable at the extremes." src="../outputs/figures/fig06_actual_vs_predicted.png"><figcaption>Figure 6. Leave-one-out predictions against observed GER for ridge and polynomial ridge. The 45-degree line is perfect prediction. The polynomial tracks the middle of the distribution better but is less stable at the extremes.</figcaption></figure>
+<p>Figure 6 shows that both models under-predict Tamil Nadu (47.0) and over-predict Karnataka (36.2), the two most influential States. The errors are not random: they reflect omitted variables such as private provision, urbanisation and demand, which are not in the three-indicator model.</p>
+<h3>6.3 Coefficients and inference</h3>
+<p>Table 6 reports the OLS coefficients with HC3 standard errors and bootstrap intervals. College density is the only coefficient that is statistically distinguishable from zero at conventional levels: +0.353 GER points per additional college per lakh (HC3 SE 0.161; p = 0.029; 95% bootstrap interval 0.112 to 0.656). The standardised coefficient is 0.547, the largest in the model. Conditional on PTR and GPI, a one-standard-deviation increase in density is associated with about half a standard deviation of GER.</p>
+<p><strong>Table 6.</strong> OLS coefficients, 28 States. HC3 standard errors; 95% percentile bootstrap intervals from 2,000 resamples. (<code>table04_coefficients.csv</code>)</p>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th style="text-align: right;">Coefficient</th>
+<th style="text-align: right;">HC3 SE</th>
+<th style="text-align: right;">p-value</th>
+<th style="text-align: right;">Bootstrap 95% CI</th>
+<th style="text-align: right;">Standardised coefficient</th>
+<th style="text-align: right;">VIF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>College density</td>
+<td style="text-align: right;"><strong>0.353</strong></td>
+<td style="text-align: right;">0.161</td>
+<td style="text-align: right;"><strong>0.029</strong></td>
+<td style="text-align: right;">0.112 to 0.656</td>
+<td style="text-align: right;"><strong>0.547</strong></td>
+<td style="text-align: right;">1.78</td>
+</tr>
+<tr>
+<td>Pupil–teacher ratio</td>
+<td style="text-align: right;">−0.189</td>
+<td style="text-align: right;">0.152</td>
+<td style="text-align: right;">0.211</td>
+<td style="text-align: right;">−0.637 to 0.027</td>
+<td style="text-align: right;">−0.247</td>
+<td style="text-align: right;">1.93</td>
+</tr>
+<tr>
+<td>Gender Parity Index</td>
+<td style="text-align: right;">0.508</td>
+<td style="text-align: right;">9.867</td>
+<td style="text-align: right;">0.959</td>
+<td style="text-align: right;">−22.46 to 15.37</td>
+<td style="text-align: right;">0.009</td>
+<td style="text-align: right;">1.12</td>
+</tr>
+</tbody>
+</table>
+<p>The PTR coefficient is negative but imprecise: −0.189 (p = 0.211), with a bootstrap interval that includes zero. More importantly, PTR is not exogenous. It is enrolment divided by teachers, so a State that expands enrolment without hiring teachers will mechanically show a higher PTR and a higher GER. The cross-sectional negative sign is therefore not a causal estimate of teacher quality. Section 6.5 shows that the sign flips in panel specifications.</p>
+<p>The GPI coefficient is essentially zero and very imprecise: 0.508 (p = 0.959), with an interval from −22.5 to 15.4. Conditional on density and PTR, gender parity carries almost no independent information about the aggregate GER. This does not mean gender parity is unimportant. It means that the aggregate GER is not the right outcome for studying gender equity, and that most States are already close enough to parity that the remaining variation does not move the aggregate. Ten States remain below parity, and those gaps matter for female participation even when they do not shift the all-person GER.</p>
+<figure><img alt="Figure 7. Residual diagnostics for the OLS three-indicator model: residuals versus fitted values, normal Q–Q plot, scale–location plot and residual histogram." src="../outputs/figures/fig07_residual_diagnostics.png"><figcaption>Figure 7. Residual diagnostics for the OLS three-indicator model: residuals versus fitted values, normal Q–Q plot, scale–location plot and residual histogram.</figcaption></figure>
+<figure><img alt="Figure 8. Standardised coefficients with 95% bootstrap confidence intervals. Only college density has an interval that excludes zero." src="../outputs/figures/fig08_coefficients.png"><figcaption>Figure 8. Standardised coefficients with 95% bootstrap confidence intervals. Only college density has an interval that excludes zero.</figcaption></figure>
+<figure><img alt="Figure 9. Component-plus-residual partial effects at the mean of the other indicators. The density slope is positive; the PTR slope is negative but imprecise; the GPI slope is almost flat." src="../outputs/figures/fig09_partial_effects.png"><figcaption>Figure 9. Component-plus-residual partial effects at the mean of the other indicators. The density slope is positive; the PTR slope is negative but imprecise; the GPI slope is almost flat.</figcaption></figure>
+<h3>6.4 Diagnostics and influence</h3>
+<p>The OLS residuals are consistent with the classical assumptions (Table 7). Shapiro–Wilk does not reject normality (W = 0.969; p = 0.561), Breusch–Pagan does not reject homoskedasticity (LM = 3.05; p = 0.384), and Ramsey RESET does not reject the linear functional form (F = 0.021; p = 0.885). The condition number is 489, which is moderate for a model with three correlated predictors. No State has a studentised residual above 2 in absolute value.</p>
+<p><strong>Table 7.</strong> Residual diagnostics and influence, OLS three-indicator model. (<code>table05_diagnostics.csv</code>)</p>
+<table>
+<thead>
+<tr>
+<th>Diagnostic</th>
+<th style="text-align: right;">Statistic</th>
+<th style="text-align: right;">p-value</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shapiro–Wilk (normality)</td>
+<td style="text-align: right;">W = 0.969</td>
+<td style="text-align: right;">0.561</td>
+<td>No evidence of non-normality</td>
+</tr>
+<tr>
+<td>Breusch–Pagan (heteroskedasticity)</td>
+<td style="text-align: right;">LM = 3.05</td>
+<td style="text-align: right;">0.384</td>
+<td>No evidence of heteroskedasticity</td>
+</tr>
+<tr>
+<td>Ramsey RESET (functional form)</td>
+<td style="text-align: right;">F = 0.021</td>
+<td style="text-align: right;">0.885</td>
+<td>No evidence of missed nonlinearity</td>
+</tr>
+<tr>
+<td>Condition number</td>
+<td style="text-align: right;">489</td>
+<td style="text-align: right;">—</td>
+<td>Moderate collinearity</td>
+</tr>
+<tr>
+<td>Maximum Cook's distance</td>
+<td style="text-align: right;">0.338</td>
+<td style="text-align: right;">—</td>
+<td>Karnataka; threshold 4/n = 0.143</td>
+</tr>
+<tr>
+<td>Influential States (Cook's D &gt; 4/n)</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">—</td>
+<td>Karnataka, Nagaland</td>
+</tr>
+<tr>
+<td>Studentised residuals above 2 in absolute value</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">—</td>
+<td>No severe outliers</td>
+</tr>
+</tbody>
+</table>
+<p>Two States are influential. Karnataka has Cook's distance 0.338 and leverage 0.338: it is the highest-density State (66 colleges per lakh) but has a lower GER than the model predicts (residual −8.35). Nagaland has Cook's distance 0.156 and the largest negative residual (−10.85). Tamil Nadu has the largest positive residual (+11.43) but low leverage, so its influence is smaller (Cook's D = 0.083).</p>
+<figure><img alt="Figure 10. Influence diagnostics: Cook's distance by State and leverage against studentised residual. Karnataka and Nagaland exceed the 4/n threshold." src="../outputs/figures/fig10_influence.png"><figcaption>Figure 10. Influence diagnostics: Cook's distance by State and leverage against studentised residual. Karnataka and Nagaland exceed the 4/n threshold.</figcaption></figure>
+<figure><img alt="Figure 11. Out-of-range behaviour of the polynomial specification. The degree-2 fit turns downward beyond the observed density range and eventually predicts negative GER, whereas the linear fit remains monotone. This is why the polynomial is a predictive benchmark, not the projection model." src="../outputs/figures/fig11_polynomial_instability.png"><figcaption>Figure 11. Out-of-range behaviour of the polynomial specification. The degree-2 fit turns downward beyond the observed density range and eventually predicts negative GER, whereas the linear fit remains monotone. This is why the polynomial is a predictive benchmark, not the projection model.</figcaption></figure>
+<h3>6.5 Panel and sensitivity checks</h3>
+<p>Table 8 reports the panel and leave-out checks. The density association is stable: 0.355 with year fixed effects, 0.398 with State and year fixed effects, and 0.752 in first differences. The first-difference estimate is larger, which suggests that within-State expansion is associated with larger GER gains than the cross-section alone implies. The short panel and measurement error caution against over-interpretation, but the sign and order of magnitude are consistent.</p>
+<p><strong>Table 8.</strong> Panel, leave-out and UT-inclusive specifications. (<code>table07_sensitivity.csv</code>)</p>
+<table>
+<thead>
+<tr>
+<th>Specification</th>
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">Density coefficient</th>
+<th style="text-align: right;">PTR coefficient</th>
+<th style="text-align: right;">GPI coefficient</th>
+<th style="text-align: right;">R² / LOOCV R²</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cross-section OLS</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">0.353 (p = 0.029)</td>
+<td style="text-align: right;">−0.189 (p = 0.211)</td>
+<td style="text-align: right;">0.508 (p = 0.959)</td>
+<td style="text-align: right;">R² = 0.543</td>
+</tr>
+<tr>
+<td>Panel, year FE</td>
+<td style="text-align: right;">140</td>
+<td style="text-align: right;">0.355</td>
+<td style="text-align: right;">−0.215</td>
+<td style="text-align: right;">−0.846</td>
+<td style="text-align: right;">R² = 0.480</td>
+</tr>
+<tr>
+<td>Panel, year FE excluding Sikkim</td>
+<td style="text-align: right;">135</td>
+<td style="text-align: right;">0.416</td>
+<td style="text-align: right;">−0.107</td>
+<td style="text-align: right;">+2.287</td>
+<td style="text-align: right;">R² = 0.585</td>
+</tr>
+<tr>
+<td>Panel, State + year FE</td>
+<td style="text-align: right;">140</td>
+<td style="text-align: right;">0.398</td>
+<td style="text-align: right;">+0.343</td>
+<td style="text-align: right;">−26.98</td>
+<td style="text-align: right;">R² = 0.945</td>
+</tr>
+<tr>
+<td>First differences</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">0.752</td>
+<td style="text-align: right;">+0.146</td>
+<td style="text-align: right;">−28.39</td>
+<td style="text-align: right;">R² = 0.395</td>
+</tr>
+<tr>
+<td>OLS excluding Karnataka</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">0.474 (p = 0.001)</td>
+<td style="text-align: right;">−0.136 (p = 0.350)</td>
+<td style="text-align: right;">−1.245 (p = 0.892)</td>
+<td style="text-align: right;">R² = 0.586; LOOCV R² = 0.457</td>
+</tr>
+<tr>
+<td>OLS excluding Karnataka + Bihar</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: right;">0.461 (p = 0.002)</td>
+<td style="text-align: right;">−0.208 (p = 0.406)</td>
+<td style="text-align: right;">−1.564 (p = 0.869)</td>
+<td style="text-align: right;">R² = 0.555; LOOCV R² = 0.392</td>
+</tr>
+<tr>
+<td>All 35 units, core</td>
+<td style="text-align: right;">35</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">LOOCV R² = 0.158</td>
+</tr>
+<tr>
+<td>All 35 units, core + UT dummy</td>
+<td style="text-align: right;">35</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">LOOCV R² = 0.180</td>
+</tr>
+</tbody>
+</table>
+<p>PTR is not robust. It is −0.215 in the year fixed-effects model but +0.343 with State fixed effects and +0.146 in first differences. The sign flip is exactly what one would expect from reverse causality and from the mechanical relationship between PTR and enrolment. A State that expands enrolment without matching teacher hiring will raise its PTR; a State that hires teachers without expanding enrolment will lower it. The cross-sectional negative correlation is therefore not a credible estimate of the effect of teacher supply.</p>
+<p>GPI is also unstable and imprecisely estimated. The large negative coefficients in the State fixed-effects and first-difference models reflect limited within-State variation and collinearity, not a credible policy effect. The aggregate GER is simply not a good outcome for identifying gender-specific constraints.</p>
+<p>The common annual trend from the year fixed-effects model is 0.866 GER points per year (SE 0.174). Over 14 years this is about 12.1 points, with a 95% interval of roughly 7.2 to 17.0 points. This trend is a key input to the projection and a major source of uncertainty. It is an average from a short, Covid-affected panel; it may not continue for 14 years, and it is unlikely to be the same in every State.</p>
+<p>One series needs a caveat. Sikkim reports a GER of 66.9% in 2019-20, having reported 48.1% the year before and 39.9% the year after. A 27-point fall in one year is not a plausible change in participation; it is almost certainly a change in how the State reported enrolment or population. Sikkim is retained in the primary estimates because deleting a State for looking unusual is a judgement that should be made transparently rather than silently, and because the alternative would be to drop a genuine data point. As a check, the year fixed-effects model is re-estimated without Sikkim: the density coefficient rises to 0.416, the common trend falls only to 0.845 (SE 0.161), and R² rises from 0.480 to 0.585. The trend used in the projection, 0.866, is therefore not an artefact of the Sikkim series, and the density result is, if anything, stronger without it. Figure 4 annotates the observation.</p>
+<p>The leave-out checks strengthen the density result. Excluding Karnataka raises the density coefficient to 0.474 (p = 0.001) and the in-sample R² to 0.586. Excluding Karnataka and Bihar gives 0.461 (p = 0.002) and R² = 0.555. The coefficient is larger without Karnataka because Karnataka is a high-density, low-GER outlier that pulls the slope down. The result does not depend on one or two States.</p>
+<p>The UT-inclusive models perform much worse out of sample: LOOCV R² is 0.158 without a UT dummy and 0.180 with one, and RMSE is about 11.2–11.4. This confirms that UTs are not exchangeable with States and justifies the primary sample choice.</p>
+<h3>6.6 Projections to 2035-36</h3>
+<p>Table 9 summarises the three scenarios. Under the reference scenario (S2), 13 of 28 States reach 50% by 2035-36. Under the damped scenario (S1), only three do. The reform scenario (S3) also produces 13 crossings: PTR and GPI reforms raise the mean projection by about 1.2 points, but they do not move any additional State across the line.</p>
+<p><strong>Table 9.</strong> Scenario summary, 28 States. (<code>table09_scenario_summary.csv</code>; State detail in <code>table06_projections_2035.csv</code>)</p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th style="text-align: right;">Point estimate ≥ 50%</th>
+<th style="text-align: right;">P(≥50%) ≥ 0.5</th>
+<th style="text-align: right;">Mean projected GER</th>
+<th style="text-align: right;">Median</th>
+<th style="text-align: right;">Min</th>
+<th style="text-align: right;">Max</th>
+<th>On track / at risk / off track</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S1 Damped</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">38.2</td>
+<td style="text-align: right;">40.7</td>
+<td style="text-align: right;">23.2</td>
+<td style="text-align: right;">56.2</td>
+<td>3 / 6 / 19</td>
+</tr>
+<tr>
+<td>S2 Recent trend (reference)</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">45.8</td>
+<td style="text-align: right;">49.5</td>
+<td style="text-align: right;">28.5</td>
+<td style="text-align: right;">65.3</td>
+<td>13 / 3 / 12</td>
+</tr>
+<tr>
+<td>S3 NEP reform</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">47.0</td>
+<td style="text-align: right;">49.7</td>
+<td style="text-align: right;">28.5</td>
+<td style="text-align: right;">65.3</td>
+<td>13 / 4 / 11</td>
+</tr>
+</tbody>
+</table>
+<p>The 13 States reaching 50% under S2 are Tamil Nadu (65.3), Himachal Pradesh (57.7), Uttarakhand (53.9), Kerala (55.9), Telangana (53.4), Sikkim (56.9), Arunachal Pradesh (56.0), Karnataka (60.3), Goa (50.4), Manipur (51.2), Maharashtra (51.1), Mizoram (50.6) and Rajasthan (51.8). Three are at risk rather than off track: Andhra Pradesh (49.9; P = 0.49), Haryana (49.1; P = 0.47) and Madhya Pradesh (46.0; P = 0.29). The remaining 12 are off track: Punjab (39.5), West Bengal (42.1), Meghalaya (40.0), Uttar Pradesh (37.5), Gujarat (38.6), Odisha (39.2), Tripura (31.6), Chhattisgarh (35.4), Nagaland (28.5), Jharkhand (30.7), Bihar (29.2) and Assam (30.3).</p>
+<figure><img alt="Figure 12. Observed GER in 2021-22 and projected GER in 2035-36 under recent trends. Bars show the 5th–95th percentile bootstrap interval; the dashed line is the 50% target." src="../outputs/figures/fig12_projection_dumbbell.png"><figcaption>Figure 12. Observed GER in 2021-22 and projected GER in 2035-36 under recent trends. Bars show the 5th–95th percentile bootstrap interval; the dashed line is the 50% target.</figcaption></figure>
+<figure><img alt="Figure 13. Probability of reaching 50% by 2035-36 under the three scenarios. The 0.5 and 0.15 lines mark the on-track and at-risk thresholds." src="../outputs/figures/fig13_probability_reaching_50.png"><figcaption>Figure 13. Probability of reaching 50% by 2035-36 under the three scenarios. The 0.5 and 0.15 lines mark the on-track and at-risk thresholds.</figcaption></figure>
+<figure><img alt="Figure 14. Distribution of State projections and the number of States reaching 50% under each scenario." src="../outputs/figures/fig14_scenario_distributions.png"><figcaption>Figure 14. Distribution of State projections and the number of States reaching 50% under each scenario.</figcaption></figure>
+<p>The uncertainty is large. For Tamil Nadu, the 5th–95th percentile interval is 53.7 to 77.4; for Bihar it is 17.9 to 40.9. The width reflects three sources: coefficient uncertainty (especially the density coefficient), trend uncertainty (0.866 ± 0.174 per year) and State-level residual variation (SD = 6.31). The probability ranking is therefore more informative than a single point forecast.</p>
+<p>The population-weighted check is the central result. Using the implied 18–23 population as weights, the 28-State GER rises from 28.0% in 2021-22 to 35.9% under S1, 43.5% under S2 and 45.7% under S3 in 2035-36. Even the reference scenario leaves the population-weighted GER 6.5 points below the NEP target, and 68.6% of the 18–23 population lives in States projected below 50%. The unweighted count of 13 States overstates national progress because the States that are off track are the populous ones.</p>
+<h3>6.7 What would it take? Required density</h3>
+<p>Table 10 reports the model-implied density required by 2035-36 under S2 for the ten largest gaps. The required annual changes are far above the observed 2017-22 changes in the low-density States. Bihar would need +4.2 colleges per lakh per year, against an observed change of zero; Uttar Pradesh +2.8 against +0.25; Assam +4.2 against +0.25; Jharkhand +3.9 against zero. Nagaland has the largest gap in density terms (61.1), but the smallest implied population, so the indicative college requirement is only about 170.</p>
+<p><strong>Table 10.</strong> Model-implied density required by 2035-36 under S2, ten largest gaps. (<code>table08_required_density.csv</code>)</p>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th style="text-align: right;">Density 2021</th>
+<th style="text-align: right;">Density 2035 (S2)</th>
+<th style="text-align: right;">Required density</th>
+<th style="text-align: right;">Gap</th>
+<th style="text-align: right;">Required annual change</th>
+<th style="text-align: right;">Observed annual change (2017-22)</th>
+<th style="text-align: right;">Indicative additional colleges</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nagaland</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">18.0</td>
+<td style="text-align: right;">79.1</td>
+<td style="text-align: right;">61.1</td>
+<td style="text-align: right;">+3.86</td>
+<td style="text-align: right;">−0.50</td>
+<td style="text-align: right;">169</td>
+</tr>
+<tr>
+<td>Bihar</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">7.0</td>
+<td style="text-align: right;">65.9</td>
+<td style="text-align: right;">58.9</td>
+<td style="text-align: right;">+4.20</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">9,184</td>
+</tr>
+<tr>
+<td>Assam</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">18.5</td>
+<td style="text-align: right;">74.4</td>
+<td style="text-align: right;">55.9</td>
+<td style="text-align: right;">+4.25</td>
+<td style="text-align: right;">+0.25</td>
+<td style="text-align: right;">2,264</td>
+</tr>
+<tr>
+<td>Jharkhand</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">8.0</td>
+<td style="text-align: right;">62.6</td>
+<td style="text-align: right;">54.6</td>
+<td style="text-align: right;">+3.90</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">2,499</td>
+</tr>
+<tr>
+<td>Tripura</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">7.5</td>
+<td style="text-align: right;">59.7</td>
+<td style="text-align: right;">52.2</td>
+<td style="text-align: right;">+3.48</td>
+<td style="text-align: right;">−0.25</td>
+<td style="text-align: right;">256</td>
+</tr>
+<tr>
+<td>Chhattisgarh</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">37.5</td>
+<td style="text-align: right;">78.8</td>
+<td style="text-align: right;">41.3</td>
+<td style="text-align: right;">+3.70</td>
+<td style="text-align: right;">+0.75</td>
+<td style="text-align: right;">1,402</td>
+</tr>
+<tr>
+<td>Uttar Pradesh</td>
+<td style="text-align: right;">29</td>
+<td style="text-align: right;">32.5</td>
+<td style="text-align: right;">68.0</td>
+<td style="text-align: right;">35.5</td>
+<td style="text-align: right;">+2.79</td>
+<td style="text-align: right;">+0.25</td>
+<td style="text-align: right;">10,262</td>
+</tr>
+<tr>
+<td>Gujarat</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">39.0</td>
+<td style="text-align: right;">71.3</td>
+<td style="text-align: right;">32.3</td>
+<td style="text-align: right;">+2.81</td>
+<td style="text-align: right;">+0.50</td>
+<td style="text-align: right;">2,419</td>
+</tr>
+<tr>
+<td>Odisha</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">41.0</td>
+<td style="text-align: right;">71.7</td>
+<td style="text-align: right;">30.7</td>
+<td style="text-align: right;">+3.19</td>
+<td style="text-align: right;">+1.00</td>
+<td style="text-align: right;">1,478</td>
+</tr>
+<tr>
+<td>Punjab</td>
+<td style="text-align: right;">33</td>
+<td style="text-align: right;">33.0</td>
+<td style="text-align: right;">62.7</td>
+<td style="text-align: right;">29.7</td>
+<td style="text-align: right;">+2.12</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">939</td>
+</tr>
+</tbody>
+</table>
+<figure><img alt="Figure 15. Model-implied college density required to reach 50% by 2035-36, and the indicative additional-college requirement. Panel (a) plots current density against required density; panel (b) ranks States by the implied number of additional colleges." src="../outputs/figures/fig15_required_density.png"><figcaption>Figure 15. Model-implied college density required to reach 50% by 2035-36, and the indicative additional-college requirement. Panel (a) plots current density against required density; panel (b) ranks States by the implied number of additional colleges.</figcaption></figure>
+<p>The indicative additional-college calculation gives the largest figures for Uttar Pradesh (about 10,300), Bihar (about 9,200), Jharkhand (2,500), Gujarat (2,400), Assam (2,300), West Bengal (2,300), Odisha (1,500), Chhattisgarh (1,400) and Madhya Pradesh (1,100). These figures are illustrative. They extrapolate the linear density coefficient far beyond the observed range and ignore teacher supply, funding, land and demand. They should be read as a signal of the scale of the gap, not as a costed plan.</p>
+<p>A cautionary comparison is useful. Karnataka already has 66 colleges per lakh, roughly the density the model says Bihar needs, but its GER is 36.2%, not 50%. Density is therefore necessary but not sufficient. Demand, quality, programme mix and completion also matter. The required-density figures describe the capacity gap implied by the cross-sectional association; they do not guarantee that reaching that density will deliver 50%.</p>
+<h3>6.8 Union Territories</h3>
+<p>The UT appendix is indicative only, because UTs were outside the estimation sample. Applying the 28-State coefficients, Chandigarh (64.8) and Puducherry (61.5) are already above 50%; Delhi (49.0) is projected at 61.1 with P = 0.95; Jammu and Kashmir (24.8) at 34.5 with P = 0.01; the Andaman and Nicobar Islands (22.6) at 39.7 with P = 0.08; and Dadra and Nagar Haveli and Daman and Diu (11.2) at 17.7 with P ≈ 0. Ladakh and Lakshadweep are omitted because of missing predictors or an insufficient panel. The UT results should not be used for policy targeting without a separate city-catchment analysis.</p>
+<h2>7 Discussion</h2>
+<h3>7.1 Why density, and why not PTR or GPI</h3>
+<p>The robust density association is consistent with an access story. States with more colleges per eligible population have lower travel and transaction costs, more programme choice and more competition, all of which can raise participation. The coefficient is conditional on PTR and GPI, but it may still pick up the fact that high-density States are richer or more urban. It is a cross-sectional association: States that build colleges may also be the States that invest in schools, roads and scholarships. The panel result, especially the larger first-difference coefficient, is reassuring but not decisive; a short panel cannot separate the effect of expansion from a simultaneous demand shock.</p>
+<p>The PTR result is a cautionary tale. A negative bivariate correlation between PTR and GER is often read as evidence that teacher shortages depress enrolment. The panel shows that the sign is not stable. With State fixed effects and in first differences, the PTR coefficient becomes positive. This is consistent with reverse causality and with the mechanical definition of PTR. The appropriate conclusion is not that teachers do not matter, but that this design cannot identify their causal effect. A credible teacher-supply analysis would need instrumented or policy-induced variation in hiring, or administrative data linking teachers to institutions and programmes.</p>
+<p>The GPI result is similarly nuanced. Ten States have GPI below 1.0, and gender gaps in higher education remain a serious equity concern. But the aggregate GER is already near parity in most States, and the remaining variation is not strongly associated with the aggregate once density and PTR are controlled. Gender parity should be evaluated with female GER, field-of-study segregation and completion as outcomes, not only as a regressor for the aggregate.</p>
+<h3>7.2 Why the national target is harder than a count of States</h3>
+<p>The reference scenario reaches 13 of 28 States, but the population-weighted GER is only 43.5%. The States below 50% include Bihar, Uttar Pradesh, Madhya Pradesh, Jharkhand, Assam, West Bengal and Odisha, which together account for a large share of the 18–23 population. A national target is not a count of States; it is a population-weighted outcome. The unweighted "13 of 28" therefore overstates progress.</p>
+<p>The reform scenario is instructive. PTR convergence to 20 and GPI convergence to 1.05 raise the mean projection by about 1.2 points, but they do not move any additional State across the 50% line. In this model, the quality and parity levers are too small, and too imprecisely estimated, to close a 20-point gap. Density expansion and the secular participation trend do most of the work. This does not mean quality reforms are unimportant; it means they are unlikely to be sufficient on their own, and that a credible 2035 strategy needs a large capacity component in the low-density States.</p>
+<h3>7.3 Policy implications</h3>
+<p>Five implications follow, with the caveat that expansion without learning gains can leave graduates without the skills that higher education is meant to provide [7].</p>
+<ol>
+<li><strong>Differentiate the target by State group.</strong> The southern and hilly States (Tamil Nadu, Kerala, Karnataka, Telangana, Himachal Pradesh, Uttarakhand, Sikkim) are broadly on track; the priority there is quality, research and graduate outcomes, not raw capacity. The low-density populous States (Bihar, Uttar Pradesh, Madhya Pradesh, Jharkhand, Assam, West Bengal, Odisha, Chhattisgarh) need a capacity push.</li>
+<li><strong>Measure density against the 18–23 population.</strong> The same number of colleges implies very different access in States with different age structures. A target based on total population would understate the need in high-fertility States.</li>
+<li><strong>Pair expansion with teacher hiring.</strong> Building colleges without teachers would raise PTR and dilute quality. The positive PTR coefficient in the fixed-effects models is a warning that enrolment growth can outrun teacher supply.</li>
+<li><strong>Do not use the aggregate GER as the only gender indicator.</strong> GPI is near parity in most States; the remaining gaps are better studied with female GER, field segregation and completion.</li>
+<li><strong>Report uncertainty.</strong> A point forecast of 50% in 2035 is not a plan. The 5th–95th intervals span 20 points or more for many States; policy should be robust to that uncertainty, not anchored to a single number.</li>
+</ol>
+<h3>7.4 What the machine-learning comparison adds</h3>
+<p>The model comparison is not a tournament in which the most flexible model wins. The polynomial has the best LOOCV error, but it is non-monotone outside the observed range and unsuitable for extrapolation. The tuned tree and k-NN have high in-sample R² but poor out-of-sample error, and their nested scores expose the optimism of tuning on 28 observations. OLS is not the best predictor, but it is within about 15% of the best RMSE, it is interpretable, and it supports the inference and projection that the policy question requires. This is a practical illustration of the distinction between prediction and explanation [23,24].</p>
+<h2>8 Limitations and Threats to Validity</h2>
+<ol>
+<li><strong>Cross-sectional association is not causation.</strong> The density coefficient is conditional on PTR and GPI; it does not identify the effect of building a college. Omitted variables such as income, urbanisation, secondary completion, private provision, distance education and State capacity may drive both density and GER.</li>
+<li><strong>Small n.</strong> With 28 States and three predictors, the model has limited power. The GPI coefficient is essentially unidentified, and the confidence intervals for PTR and GPI are wide. LOOCV is the right protocol, but it cannot create information that the sample does not contain.</li>
+<li><strong>PTR endogeneity.</strong> PTR is mechanically related to enrolment and teacher supply. Its sign flips across specifications, so it should not be read as a causal lever.</li>
+<li><strong>Omitted variables.</strong> The model explains about 54% of cross-State variance in-sample and 37% out-of-sample. The residual pattern (Tamil Nadu under-predicted, Karnataka over-predicted) shows that the three indicators do not capture demand, quality or private provision.</li>
+<li><strong>Extrapolation.</strong> The projection applies a linear density coefficient far beyond the observed range (maximum 66) and caps density at 100. The required-density and additional-college figures are model-implied illustrations, not costed plans.</li>
+<li><strong>Trend assumption.</strong> The 0.866-point annual trend is an average from a short, Covid-affected panel. It may not continue for 14 years, and it is unlikely to be the same in every State.</li>
+<li><strong>UT exclusion.</strong> UTs are excluded from estimation for methodological reasons; their appendix projections are indicative only.</li>
+<li><strong>Data revisions and reporting breaks.</strong> GER 2021-22 is provisional in the OGD release; AISHE figures may be revised. The 2011 Census population projection is the denominator for both GER and density. Reporting practice can also break a series abruptly, as Sikkim's 2019-20 value illustrates; such breaks are annotated and tested rather than smoothed away.</li>
+<li><strong>No spatial dependence.</strong> Neighbouring States may share students, teachers and labour markets; the model treats them as independent.</li>
+<li><strong>No policy cost.</strong> The analysis does not estimate the fiscal cost of expansion, the supply of qualified teachers, or the demand response to new colleges.</li>
+</ol>
+<h2>9 Conclusion and Future Work</h2>
+<p>The 50% GER target is achievable for about half of the States under a continuation of recent trends, but not for the States that account for most of India's young population. College density is the most robust correlate of GER and the lever with the largest projected effect. PTR and GPI are important for quality and equity, but they do not carry independent explanatory power for the aggregate in this cross-section. The population-weighted GER is projected at 43.5% in 2035-36 under the reference scenario, 6.5 points short of the target, with 68.6% of the 18–23 population in States below 50%.</p>
+<p>The policy message is twofold. First, the target is off track in the populous low-density States, and a national strategy that focuses on the already-high-GER States will not deliver it. Second, capacity expansion must be paired with teacher supply and equity policies, because the quality and parity levers in this model are too weak to close the gap on their own. A credible 2035 strategy needs a differentiated, State-specific mix of expansion, quality and equity, monitored with uncertainty rather than a single point forecast.</p>
+<p>Future work should add meteorological and economic covariates, extend the panel beyond 2021-22, use institution-level or district-level data to reduce aggregation bias, and test whether the density association survives a credible identification strategy such as a policy-induced expansion programme. It should also model female GER and field-of-study segregation directly, rather than treating gender parity as a regressor for the aggregate.</p>
+<h2>Declarations</h2>
+<p><strong>Data availability.</strong> The target is the Open Government Data Platform India resource <code>7edbaeed-65e9-43ad-8f81-730187b70463</code> [3]. The predictors are from the AISHE 2021-22 Final Report [1]. The raw files, retrieval metadata and SHA-256 checksums are stored in <code>data/raw/</code>. The processed analysis files are in <code>data/processed/</code>, and the validation log is <code>data/processed/extraction_validation.txt</code>.</p>
+<p><strong>Code availability.</strong> The full pipeline is in <code>src/</code>, with <code>src/run_all.py</code> as the entry point. <code>src/verify_outputs.py</code> checks the headline numbers. The report source and build script are in <code>report/</code>. The code runs on Windows and Linux; <code>README.md</code> and <code>run.sh</code> document both.</p>
+<p><strong>Ethics.</strong> The data are aggregate administrative statistics with no personal information. The main ethical risk is over-reliance on a forecast: a missed target or a misallocated college budget can affect access for vulnerable groups. The uncertainty intervals and the limitations should be read as part of the result, not as a disclaimer.</p>
+<p><strong>Conflict of interest.</strong> The author declares no conflict of interest.</p>
+<p><strong>Funding.</strong> None.</p>
+<p><strong>Use of AI tools.</strong> An AI assistant (DeepSeek V4.1 Flash via OpenCode) was used to help draft and edit the report, to refactor parts of the analysis code, and to prepare the viva-study notes. All data extraction, model estimation, tables and figures were produced by the code in <code>src/</code>, and every number in this report was checked against the generated outputs with <code>src/verify_outputs.py</code>. The author reviewed the content and takes full responsibility for it.</p>
+<h2>References</h2>
+<div class="refs">
+<p>[1] Ministry of Education, <em>All India Survey on Higher Education 2021-22, Final Report</em>. New Delhi, India: Department of Higher Education, Ministry of Education, Government of India, 2023.</p>
+<p>[2] Ministry of Education, <em>National Education Policy 2020</em>. New Delhi, India: Government of India, 2020.</p>
+<p>[3] Government of India, <em>States/UT-wise Gross Enrolment Ratio (GER) in Higher Education Based on 2011 Population Census Projection for 18–23 Age Group during 2021-22</em>. Open Government Data Platform India, resource <code>7edbaeed-65e9-43ad-8f81-730187b70463</code>, 2025.</p>
+<p>[4] Office of the Registrar General and Census Commissioner, <em>Census of India 2011: Population Projections for India and States, 2011–2036</em>. New Delhi, India: Government of India, 2019.</p>
+<p>[5] P. Agarwal, <em>Indian Higher Education: Envisioning the Future</em>. New Delhi, India: Sage Publications, 2009.</p>
+<p>[6] J. B. G. Tilak, <em>Higher Education in India: In Search of Equality, Quality and Quantity</em>. New Delhi, India: Orient BlackSwan, 2013.</p>
+<p>[7] World Bank, <em>World Development Report 2018: Learning to Realize Education's Promise</em>. Washington, DC, USA: World Bank, 2018.</p>
+<p>[8] T. Hastie, R. Tibshirani and J. Friedman, <em>The Elements of Statistical Learning: Data Mining, Inference, and Prediction</em>, 2nd ed. New York, NY, USA: Springer, 2009.</p>
+<p>[9] G. James, D. Witten, T. Hastie and R. Tibshirani, <em>An Introduction to Statistical Learning</em>, 2nd ed. New York, NY, USA: Springer, 2021.</p>
+<p>[10] F. Pedregosa et al., "Scikit-learn: Machine learning in Python," <em>Journal of Machine Learning Research</em>, vol. 12, pp. 2825–2830, 2011.</p>
+<p>[11] M. Stone, "Cross-validatory choice and assessment of statistical predictions," <em>Journal of the Royal Statistical Society: Series B</em>, vol. 36, no. 2, pp. 111–147, 1974.</p>
+<p>[12] H. White, "A heteroskedasticity-consistent covariance matrix estimator and a direct test for heteroskedasticity," <em>Econometrica</em>, vol. 48, no. 4, pp. 817–838, 1980.</p>
+<p>[13] J. G. MacKinnon and H. White, "Some heteroskedasticity-consistent covariance matrix estimators with improved finite sample properties," <em>Journal of Econometrics</em>, vol. 29, no. 3, pp. 305–325, 1985.</p>
+<p>[14] B. Efron and R. J. Tibshirani, <em>An Introduction to the Bootstrap</em>. New York, NY, USA: Chapman &amp; Hall, 1993.</p>
+<p>[15] R. D. Cook, "Detection of influential observation in linear regression," <em>Technometrics</em>, vol. 19, no. 1, pp. 15–18, 1977.</p>
+<p>[16] S. S. Shapiro and M. B. Wilk, "An analysis of variance test for normality (complete samples)," <em>Biometrika</em>, vol. 52, no. 3/4, pp. 591–611, 1965.</p>
+<p>[17] T. S. Breusch and A. R. Pagan, "A simple test for heteroscedasticity and random coefficient variation," <em>Econometrica</em>, vol. 47, no. 5, pp. 1287–1294, 1979.</p>
+<p>[18] J. B. Ramsey, "Tests for specification errors in classical linear least-squares regression analysis," <em>Journal of the Royal Statistical Society: Series B</em>, vol. 31, no. 2, pp. 350–371, 1969.</p>
+<p>[19] D. A. Belsley, E. Kuh and R. E. Welsch, <em>Regression Diagnostics: Identifying Influential Data and Sources of Collinearity</em>. New York, NY, USA: Wiley, 1980.</p>
+<p>[20] A. E. Hoerl and R. W. Kennard, "Ridge regression: biased estimation for nonorthogonal problems," <em>Technometrics</em>, vol. 12, no. 1, pp. 55–67, 1970.</p>
+<p>[21] A. C. Cameron and D. L. Miller, "A practitioner's guide to cluster-robust inference," <em>Journal of Human Resources</em>, vol. 50, no. 2, pp. 317–372, 2015.</p>
+<p>[22] J. M. Wooldridge, <em>Econometric Analysis of Cross Section and Panel Data</em>, 2nd ed. Cambridge, MA, USA: MIT Press, 2010.</p>
+<p>[23] S. Mullainathan and J. Spiess, "Machine learning: an applied econometric approach," <em>Journal of Economic Perspectives</em>, vol. 31, no. 2, pp. 87–106, 2017.</p>
+<p>[24] S. Athey and G. W. Imbens, "Machine learning methods that economists should know about," <em>Annual Review of Economics</em>, vol. 11, pp. 685–725, 2019.</p>
+</div>
+<div class="appendix">
+<h2>Appendix A. Per-State Results</h2>
+<p><strong>Table A1.</strong> Observed GER, leave-one-out prediction from the OLS three-indicator model, projected GER in 2035-36 under S2, and status for the 28 States. (<code>table11_state_appendix.csv</code>)</p>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th style="text-align: right;">GER 2021</th>
+<th style="text-align: right;">LOOCV prediction</th>
+<th style="text-align: right;">LOOCV error</th>
+<th style="text-align: right;">Density 2021</th>
+<th style="text-align: right;">Density 2035</th>
+<th style="text-align: right;">GER 2035 (S2)</th>
+<th style="text-align: right;">5th pct</th>
+<th style="text-align: right;">95th pct</th>
+<th style="text-align: right;">P(≥50%)</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tamil Nadu</td>
+<td style="text-align: right;">47.0</td>
+<td style="text-align: right;">34.5</td>
+<td style="text-align: right;">+12.5</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">57.5</td>
+<td style="text-align: right;">65.3</td>
+<td style="text-align: right;">53.7</td>
+<td style="text-align: right;">77.4</td>
+<td style="text-align: right;">0.98</td>
+<td>On track</td>
+</tr>
+<tr>
+<td>Himachal Pradesh</td>
+<td style="text-align: right;">43.1</td>
+<td style="text-align: right;">33.9</td>
+<td style="text-align: right;">+9.2</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">54.0</td>
+<td style="text-align: right;">57.7</td>
+<td style="text-align: right;">46.2</td>
+<td style="text-align: right;">68.5</td>
+<td style="text-align: right;">0.88</td>
+<td>On track</td>
+</tr>
+<tr>
+<td>Uttarakhand</td>
+<td style="text-align: right;">41.8</td>
+<td style="text-align: right;">32.6</td>
+<td style="text-align: right;">+9.2</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">37.0</td>
+<td style="text-align: right;">53.9</td>
+<td style="text-align: right;">42.9</td>
+<td style="text-align: right;">65.3</td>
+<td style="text-align: right;">0.73</td>
+<td>On track</td>
+</tr>
+<tr>
+<td>Kerala</td>
+<td style="text-align: right;">41.3</td>
+<td style="text-align: right;">36.2</td>
+<td style="text-align: right;">+5.1</td>
+<td style="text-align: right;">46</td>
+<td style="text-align: right;">53.0</td>
+<td style="text-align: right;">55.9</td>
+<td style="text-align: right;">44.7</td>
+<td style="text-align: right;">67.3</td>
+<td style="text-align: right;">0.81</td>
+<td>On track</td>
+</tr>
+<tr>
+<td>Telangana</td>
+<td style="text-align: right;">40.0</td>
+<td style="text-align: right;">39.4</td>
+<td style="text-align: right;">+0.6</td>
+<td style="text-align: right;">52</td>
+<td style="text-align: right;">55.5</td>
+<td style="text-align: right;">53.4</td>
+<td style="text-align: right;">41.8</td>
+<td style="text-align: right;">64.2</td>
+<td style="text-align: right;">0.68</td>
+<td>On track</td>
+</tr>
+<tr>
+<td>Sikkim</td>
+<td style="text-align: right;">38.6</td>
+<td style="text-align: right;">29.5</td>
+<td style="text-align: right;">+9.1</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">44.5</td>
+<td style="text-align: right;">56.9</td>
+<td style="text-align: right;">45.6</td>
+<td style="text-align: right;">69.4</td>
+<td style="text-align: right;">0.85</td>
+<td>On track</td>
+</tr>
+<tr>
+<td>Andhra Pradesh</td>
+<td style="text-align: right;">36.5</td>
+<td style="text-align: right;">38.6</td>
+<td style="text-align: right;">−2.1</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: right;">52.5</td>
+<td style="text-align: right;">49.9</td>
+<td style="text-align: right;">38.8</td>
+<td style="text-align: right;">61.0</td>
+<td style="text-align: right;">0.49</td>
+<td>At risk</td>
+</tr>
+<tr>
+<td>Arunachal Pradesh</td>
+<td style="text-align: right;">36.5</td>
+<td style="text-align: right;">27.5</td>
+<td style="text-align: right;">+9.0</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">46.0</td>
+<td style="text-align: right;">56.0</td>
+<td style="text-align: right;">44.7</td>
+<td style="text-align: right;">68.9</td>
+<td style="text-align: right;">0.80</td>
+<td>On track</td>
+</tr>
+<tr>
+<td>Karnataka</td>
+<td style="text-align: right;">36.2</td>
+<td style="text-align: right;">48.8</td>
+<td style="text-align: right;">−12.6</td>
+<td style="text-align: right;">66</td>
+<td style="text-align: right;">100.0</td>
+<td style="text-align: right;">60.3</td>
+<td style="text-align: right;">46.9</td>
+<td style="text-align: right;">75.1</td>
+<td style="text-align: right;">0.90</td>
+<td>On track</td>
+</tr>
+<tr>
+<td>Goa</td>
+<td style="text-align: right;">35.8</td>
+<td style="text-align: right;">33.0</td>
+<td style="text-align: right;">+2.8</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">41.0</td>
+<td style="text-align: right;">50.4</td>
+<td style="text-align: right;">39.3</td>
+<td style="text-align: right;">61.7</td>
+<td style="text-align: right;">0.53</td>
+<td>On track</td>
+</tr>
+<tr>
+<td>Manipur</td>
+<td style="text-align: right;">35.4</td>
+<td style="text-align: right;">30.4</td>
+<td style="text-align: right;">+5.0</td>
+<td style="text-align: right;">29</td>
+<td style="text-align: right;">39.5</td>
+<td style="text-align: right;">51.2</td>
+<td style="text-align: right;">40.3</td>
+<td style="text-align: right;">62.8</td>
+<td style="text-align: right;">0.58</td>
+<td>On track</td>
+</tr>
+<tr>
+<td>Maharashtra</td>
+<td style="text-align: right;">35.3</td>
+<td style="text-align: right;">32.1</td>
+<td style="text-align: right;">+3.2</td>
+<td style="text-align: right;">36</td>
+<td style="text-align: right;">46.5</td>
+<td style="text-align: right;">51.1</td>
+<td style="text-align: right;">40.0</td>
+<td style="text-align: right;">62.5</td>
+<td style="text-align: right;">0.57</td>
+<td>On track</td>
+</tr>
+<tr>
+<td>Haryana</td>
+<td style="text-align: right;">33.3</td>
+<td style="text-align: right;">31.6</td>
+<td style="text-align: right;">+1.7</td>
+<td style="text-align: right;">33</td>
+<td style="text-align: right;">43.5</td>
+<td style="text-align: right;">49.1</td>
+<td style="text-align: right;">37.6</td>
+<td style="text-align: right;">60.5</td>
+<td style="text-align: right;">0.47</td>
+<td>At risk</td>
+</tr>
+<tr>
+<td>Mizoram</td>
+<td style="text-align: right;">32.3</td>
+<td style="text-align: right;">30.7</td>
+<td style="text-align: right;">+1.6</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">45.5</td>
+<td style="text-align: right;">50.6</td>
+<td style="text-align: right;">38.6</td>
+<td style="text-align: right;">63.0</td>
+<td style="text-align: right;">0.53</td>
+<td>On track</td>
+</tr>
+<tr>
+<td>Madhya Pradesh</td>
+<td style="text-align: right;">28.9</td>
+<td style="text-align: right;">28.2</td>
+<td style="text-align: right;">+0.7</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">42.0</td>
+<td style="text-align: right;">46.0</td>
+<td style="text-align: right;">34.6</td>
+<td style="text-align: right;">57.5</td>
+<td style="text-align: right;">0.29</td>
+<td>At risk</td>
+</tr>
+<tr>
+<td>Rajasthan</td>
+<td style="text-align: right;">28.6</td>
+<td style="text-align: right;">34.6</td>
+<td style="text-align: right;">−6.0</td>
+<td style="text-align: right;">42</td>
+<td style="text-align: right;">73.5</td>
+<td style="text-align: right;">51.8</td>
+<td style="text-align: right;">38.6</td>
+<td style="text-align: right;">65.4</td>
+<td style="text-align: right;">0.60</td>
+<td>On track</td>
+</tr>
+<tr>
+<td>Punjab</td>
+<td style="text-align: right;">27.4</td>
+<td style="text-align: right;">33.5</td>
+<td style="text-align: right;">−6.1</td>
+<td style="text-align: right;">33</td>
+<td style="text-align: right;">33.0</td>
+<td style="text-align: right;">39.5</td>
+<td style="text-align: right;">28.4</td>
+<td style="text-align: right;">51.1</td>
+<td style="text-align: right;">0.07</td>
+<td>Off track</td>
+</tr>
+<tr>
+<td>West Bengal</td>
+<td style="text-align: right;">26.3</td>
+<td style="text-align: right;">23.7</td>
+<td style="text-align: right;">+2.6</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">25.5</td>
+<td style="text-align: right;">42.1</td>
+<td style="text-align: right;">30.7</td>
+<td style="text-align: right;">53.9</td>
+<td style="text-align: right;">0.15</td>
+<td>Off track</td>
+</tr>
+<tr>
+<td>Meghalaya</td>
+<td style="text-align: right;">25.4</td>
+<td style="text-align: right;">27.4</td>
+<td style="text-align: right;">−2.0</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">27.0</td>
+<td style="text-align: right;">40.0</td>
+<td style="text-align: right;">28.4</td>
+<td style="text-align: right;">51.7</td>
+<td style="text-align: right;">0.07</td>
+<td>Off track</td>
+</tr>
+<tr>
+<td>Uttar Pradesh</td>
+<td style="text-align: right;">24.1</td>
+<td style="text-align: right;">28.0</td>
+<td style="text-align: right;">−3.9</td>
+<td style="text-align: right;">29</td>
+<td style="text-align: right;">32.5</td>
+<td style="text-align: right;">37.5</td>
+<td style="text-align: right;">26.3</td>
+<td style="text-align: right;">48.9</td>
+<td style="text-align: right;">0.03</td>
+<td>Off track</td>
+</tr>
+<tr>
+<td>Gujarat</td>
+<td style="text-align: right;">24.0</td>
+<td style="text-align: right;">30.8</td>
+<td style="text-align: right;">−6.8</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">39.0</td>
+<td style="text-align: right;">38.6</td>
+<td style="text-align: right;">27.9</td>
+<td style="text-align: right;">50.4</td>
+<td style="text-align: right;">0.05</td>
+<td>Off track</td>
+</tr>
+<tr>
+<td>Odisha</td>
+<td style="text-align: right;">22.1</td>
+<td style="text-align: right;">30.1</td>
+<td style="text-align: right;">−8.0</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">41.0</td>
+<td style="text-align: right;">39.2</td>
+<td style="text-align: right;">27.8</td>
+<td style="text-align: right;">51.6</td>
+<td style="text-align: right;">0.07</td>
+<td>Off track</td>
+</tr>
+<tr>
+<td>Tripura</td>
+<td style="text-align: right;">20.7</td>
+<td style="text-align: right;">21.2</td>
+<td style="text-align: right;">−0.5</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">7.5</td>
+<td style="text-align: right;">31.6</td>
+<td style="text-align: right;">19.9</td>
+<td style="text-align: right;">42.6</td>
+<td style="text-align: right;">0.00</td>
+<td>Off track</td>
+</tr>
+<tr>
+<td>Chhattisgarh</td>
+<td style="text-align: right;">19.6</td>
+<td style="text-align: right;">29.8</td>
+<td style="text-align: right;">−10.2</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">37.5</td>
+<td style="text-align: right;">35.4</td>
+<td style="text-align: right;">23.9</td>
+<td style="text-align: right;">47.0</td>
+<td style="text-align: right;">0.01</td>
+<td>Off track</td>
+</tr>
+<tr>
+<td>Nagaland</td>
+<td style="text-align: right;">18.8</td>
+<td style="text-align: right;">31.6</td>
+<td style="text-align: right;">−12.8</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">18.0</td>
+<td style="text-align: right;">28.5</td>
+<td style="text-align: right;">17.1</td>
+<td style="text-align: right;">39.6</td>
+<td style="text-align: right;">0.00</td>
+<td>Off track</td>
+</tr>
+<tr>
+<td>Jharkhand</td>
+<td style="text-align: right;">18.6</td>
+<td style="text-align: right;">15.9</td>
+<td style="text-align: right;">+2.7</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">8.0</td>
+<td style="text-align: right;">30.7</td>
+<td style="text-align: right;">19.5</td>
+<td style="text-align: right;">41.9</td>
+<td style="text-align: right;">0.00</td>
+<td>Off track</td>
+</tr>
+<tr>
+<td>Bihar</td>
+<td style="text-align: right;">17.1</td>
+<td style="text-align: right;">11.8</td>
+<td style="text-align: right;">+5.3</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">7.0</td>
+<td style="text-align: right;">29.2</td>
+<td style="text-align: right;">17.9</td>
+<td style="text-align: right;">40.9</td>
+<td style="text-align: right;">0.00</td>
+<td>Off track</td>
+</tr>
+<tr>
+<td>Assam</td>
+<td style="text-align: right;">16.9</td>
+<td style="text-align: right;">25.8</td>
+<td style="text-align: right;">−8.9</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">18.5</td>
+<td style="text-align: right;">30.3</td>
+<td style="text-align: right;">18.9</td>
+<td style="text-align: right;">41.4</td>
+<td style="text-align: right;">0.00</td>
+<td>Off track</td>
+</tr>
+</tbody>
+</table>
+<h2>Appendix B. Reproduction Checklist</h2>
+<ol>
+<li><code>python src/download_data.py</code> — downloads the OGD JSON and the AISHE PDF and writes SHA-256 checksums.</li>
+<li><code>python src/extract_aishe.py</code> — extracts AISHE Tables 4, 42, 47, 48 and 49 and writes <code>extraction_validation.txt</code>.</li>
+<li><code>python src/build_dataset.py</code> — merges the OGD target with the AISHE predictors and derives the analysis variables.</li>
+<li><code>python src/eda.py</code> — writes Tables 1–3 and Figures 1–4.</li>
+<li><code>python src/modeling.py</code> — writes the model comparison, coefficients, diagnostics, sensitivity table, hyper-parameter table and Figures 5–11.</li>
+<li><code>python src/projection.py</code> — writes the projections, required density, scenario summary, per-State appendix and Figures 12–15.</li>
+<li><code>python src/verify_outputs.py</code> — checks the headline numbers against the stored outputs.</li>
+<li><code>python report/build_report.py</code> — fills the author block from <code>report/report_meta.json</code>, writes <code>report.md</code> and <code>report.html</code>, and prints the PDF if a browser is available.</li>
+</ol>
+<p>All steps are deterministic given the raw files and <code>RANDOM_STATE = 42</code>. The pipeline can be run end to end with <code>python src/run_all.py</code> (or <code>./run.sh</code> on Linux).</p>
+</div></body></html>

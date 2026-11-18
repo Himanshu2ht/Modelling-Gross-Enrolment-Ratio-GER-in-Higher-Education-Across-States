@@ -1,0 +1,5 @@
+# SHA-256 checksums of raw inputs
+
+c4400273cb2d574c793390a900528c825b036667cb0977bbdb8c40f0276d5f15  aishe_2021_22.pdf  (9766276 bytes)
+103e741aa4b7aaacc7b2fa4fa67bb96d48a2695e01b7edd3c42ce246aad371c7  ogd_ger_2021_22.json  (4451 bytes)
+4080380ca1821d41ae9a2cacf687b28cfecd32174190c8765f9ee2e561a864ae  ogd_resource_page.html  (1120440 bytes)

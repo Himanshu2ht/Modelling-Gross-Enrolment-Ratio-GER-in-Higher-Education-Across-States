@@ -1,0 +1,15 @@
+# Local Python runtime
+.py/
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Scratch downloads and working notes
+scratch/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
