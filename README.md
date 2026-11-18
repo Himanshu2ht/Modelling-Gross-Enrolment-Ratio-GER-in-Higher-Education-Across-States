@@ -226,7 +226,7 @@ ml_project/
     ├── build_report.py          # Markdown -> HTML -> PDF (Edge/Chrome/Chromium)
     ├── report.md                # generated Markdown report
     ├── report.html              # generated print-ready HTML
-    └── Problem18_GER_Report.pdf # submission PDF
+    └── GER_Report.pdf           # submission PDF
 ```
 
 `scratch/` holds working downloads and notes from data exploration; nothing in

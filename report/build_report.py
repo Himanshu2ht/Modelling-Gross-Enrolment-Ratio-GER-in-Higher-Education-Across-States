@@ -35,7 +35,7 @@ ROOT = HERE.parent
 TEMPLATE = HERE / "report_template.md"
 MD_OUT = HERE / "report.md"
 HTML_OUT = HERE / "report.html"
-PDF_OUT = HERE / "Problem18_GER_Report.pdf"
+PDF_OUT = HERE / "GER_Report.pdf"
 
 FALLBACKS = {
     "author": "Author name — set in report/report_meta.json",
