@@ -1,0 +1,4 @@
+unit,years,variables_missing,reason,treatment
+Ladakh,"2017-18, 2018-19","ger, college_density, ptr, gpi, avg_enrolment_per_college",Ladakh was constituted as a Union Territory on 31 October 2019; AISHE has no separate pre-2019 rows.,Two unit-years excluded from the panel; no imputation because the gap is structural.
+Lakshadweep,"2017-18, 2018-19, 2019-20, 2020-21, 2021-22","college_density, avg_enrolment_per_college",AISHE does not report college counts (or density and average enrolment per college) for Lakshadweep.,"Excluded from the multivariate models and from the density-based projection; GER, PTR and GPI are retained for description only."
+28-State estimation sample,2021-22,none,"Complete cases on GER, college density, PTR and GPI.",n = 28; no imputation.

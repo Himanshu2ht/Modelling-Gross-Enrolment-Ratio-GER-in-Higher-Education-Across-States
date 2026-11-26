@@ -1,0 +1,103 @@
+{
+  "note": "LOOCV refits OLS on the 27 training States at every step.",
+  "specifications": [
+    {
+      "specification": "Raw scale (reported)",
+      "predictors": "college_density + ptr + gpi",
+      "n": 28,
+      "r2_in_sample": 0.5426861282613986,
+      "adj_r2": 0.48552189429407344,
+      "aic": 186.34692723734088,
+      "bic": 191.6757452780417,
+      "loo_r2": 0.36955919090624934,
+      "loo_rmse": 6.864427751449368,
+      "loo_mae": 5.724677963480936,
+      "resid_skew": -0.19781117392537828,
+      "shapiro_p": 0.561137739296118,
+      "breusch_pagan_p": 0.3839810089671068,
+      "density_coef": 0.3528412246902524,
+      "density_se": 0.11876473075133717,
+      "density_p": 0.006648880464270398,
+      "max_abs_predictor_skew": 2.0505030538161195
+    },
+    {
+      "specification": "Log density",
+      "predictors": "log_density + ptr + gpi",
+      "n": 28,
+      "r2_in_sample": 0.523501177897747,
+      "adj_r2": 0.4639388251349653,
+      "aic": 187.49759527076202,
+      "bic": 192.82641331146283,
+      "loo_r2": 0.35648586817158545,
+      "loo_rmse": 6.935235673161724,
+      "loo_mae": 5.889760412110415,
+      "resid_skew": -0.18665168956314615,
+      "shapiro_p": 0.511380904792519,
+      "breusch_pagan_p": 0.6316585202239398,
+      "density_coef": 10.74424731306647,
+      "density_se": 3.922006826480651,
+      "density_p": 0.011421697341750336,
+      "max_abs_predictor_skew": 2.0505030538161195
+    },
+    {
+      "specification": "Log density and log PTR",
+      "predictors": "log_density + log_ptr + gpi",
+      "n": 28,
+      "r2_in_sample": 0.5405430049274298,
+      "adj_r2": 0.4831108805433585,
+      "aic": 186.4778379476024,
+      "bic": 191.80665598830322,
+      "loo_r2": 0.35943437255041755,
+      "loo_rmse": 6.919329223886732,
+      "loo_mae": 5.746634101292299,
+      "resid_skew": -0.13630266790030152,
+      "shapiro_p": 0.6747776347179266,
+      "breusch_pagan_p": 0.4290502187847235,
+      "density_coef": 8.883052556593297,
+      "density_se": 3.693895331811609,
+      "density_p": 0.024253955300711665,
+      "max_abs_predictor_skew": 1.0131225985654018
+    },
+    {
+      "specification": "Log all three predictors",
+      "predictors": "log_density + log_ptr + log_gpi",
+      "n": 28,
+      "r2_in_sample": 0.5406018144311321,
+      "adj_r2": 0.4831770412350236,
+      "aic": 186.47425377864823,
+      "bic": 191.80307181934904,
+      "loo_r2": 0.3604891172834702,
+      "loo_rmse": 6.913630250618798,
+      "loo_mae": 5.742107779292446,
+      "resid_skew": -0.13753941927853378,
+      "shapiro_p": 0.6772673258498974,
+      "breusch_pagan_p": 0.4329128766570436,
+      "density_coef": 8.874146573588988,
+      "density_se": 3.69714723047764,
+      "density_p": 0.024495479002849447,
+      "max_abs_predictor_skew": 1.0131225985654018
+    }
+  ],
+  "skewness": [
+    {
+      "variable": "college_density",
+      "raw_skew": 0.3505570978263283,
+      "log_skew": -1.0131225985654018
+    },
+    {
+      "variable": "ptr",
+      "raw_skew": 2.0505030538161195,
+      "log_skew": 0.9944601230777305
+    },
+    {
+      "variable": "gpi",
+      "raw_skew": 0.7631801494790801,
+      "log_skew": 0.5513391504751392
+    },
+    {
+      "variable": "ger",
+      "raw_skew": 0.017834193308952587,
+      "log_skew": -0.3292388841821778
+    }
+  ]
+}

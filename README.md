@@ -62,7 +62,10 @@ linear association, not costed plans; see the limitations below.
 ### 3.1 Target
 
 - **Source:** Open Government Data Platform India (OGD), resource
-  `7edbaeed-65e9-43ad-8f81-730187b70463`.
+  `7edbaeed-65e9-43ad-8f81-730187b70463`
+  ([resource page](https://www.data.gov.in/resource/statesut-wise-gross-enrolment-ratio-ger-higher-education-based-2011-population-census)).
+- **Licence and access date:** Government Open Data Licence--India (GODL-India);
+  retrieved on 25 October 2026.
 - **Title:** *States/UT-wise Gross Enrolment Ratio (GER) in Higher Education
   Based on 2011 Population Census Projection for 18–23 Age Group during
   2021-22.*
@@ -210,23 +213,31 @@ ml_project/
 │   ├── download_data.py         # OGD API + AISHE PDF download and checksums
 │   ├── extract_aishe.py         # PDF table extraction and validation
 │   ├── build_dataset.py         # merge target and predictors, derive variables
-│   ├── eda.py                   # tables 01-02, figures 01-04
+│   ├── eda.py                   # tables 01-02b, figures 01-04
+│   ├── checks.py                # tables 12-13 (log transform, skewness, missingness)
 │   ├── modeling.py              # tables 03-05, 07, 10, figures 05-11
 │   ├── projection.py            # tables 06, 06b, 08, 09, 11, figures 12-15
-│   ├── verify_outputs.py        # asserts the numbers quoted in the report
+│   ├── verify_outputs.py        # asserts the numbers quoted in the paper
 │   └── run_all.py               # end-to-end runner
 ├── outputs/
 │   ├── tables/                  # all CSV tables
 │   ├── figures/                 # all PNG figures (300 dpi)
 │   ├── model_results.json       # fitted coefficients, diagnostics, panel, tuning
+│   ├── log_transform_results.json # skewness and log-transform specification tests
 │   └── projection_results.json  # scenario definitions, summaries, weights
+├── paper/
+│   ├── paper.tex                # Overleaf-ready LaTeX manuscript
+│   ├── references.bib           # BibTeX bibliography with verified DOIs
+│   ├── sections/                # modular LaTeX sections
+│   ├── figures/                 # publication figures
+│   └── paper.pdf                # compiled article PDF
 └── report/
-    ├── report_template.md       # journal-format source with author placeholders
+    ├── report_template.md       # initial Markdown template
     ├── report_meta.json         # author, college, roll number, e-mail, supervisor
-    ├── build_report.py          # Markdown -> HTML -> PDF (Edge/Chrome/Chromium)
+    ├── build_report.py          # Markdown -> HTML -> PDF
     ├── report.md                # generated Markdown report
     ├── report.html              # generated print-ready HTML
-    └── GER_Report.pdf           # submission PDF
+    └── GER_Report.pdf           # initial submission PDF
 ```
 
 `scratch/` holds working downloads and notes from data exploration; nothing in
@@ -334,6 +345,9 @@ bootstrap uses 2,000 draws.
 | `table09_scenario_summary.csv` | Scenario-level counts and distributions |
 | `table10_hyperparameter_search.csv` | Tuning grids, selected values, internal vs nested CV error |
 | `table11_state_appendix.csv` | Per-State LOOCV prediction and S2 projection with intervals |
+| `table12_log_transform.csv` | Raw vs log-transformed OLS comparison |
+| `table12b_skewness.csv` | Raw and log skewness of predictors and GER |
+| `table13_missingness.csv` | Panel and estimation-sample missingness audit |
 
 ### Figures
 
@@ -366,9 +380,9 @@ bootstrap uses 2,000 draws.
 - AISHE extraction is validated against Table 4 and the OGD target; see
   `data/processed/extraction_validation.txt`.
 - `src/verify_outputs.py` re-reads the generated artefacts and asserts the
-  headline numbers quoted in the report (60 checks: sample size, coefficients,
-  diagnostics, scenario counts, output inventory, provenance).  A failing check
-  means a reproduction failure, not a typo.
+  headline numbers quoted in the report (sample size, coefficients,
+  diagnostics, scenario counts, output inventory, log-transform checks,
+  provenance).  A failing check means a reproduction failure, not a typo.
 - Sikkim's published 2019-20 GER (66.9%) breaks its own series by 27 points in
   one year.  It is retained and annotated in Figure 4, and the year
   fixed-effects model is also estimated without Sikkim (density 0.416, trend
@@ -413,9 +427,10 @@ bootstrap uses 2,000 draws.
 
 ## 10. Suggested citation
 
-> [Author]. (2026). *Modelling State-Level Gross Enrolment Ratio in Indian
-> Higher Education: Correlates and 2035 Projections*. Project report,
-> [Institution].
+> Jha, H. K. (2026). *Modelling State-Level Gross Enrolment Ratio in Indian
+> Higher Education: Correlates, Validation and a 2035 Projection*. Project
+> report, Department of Computer Science, Ramanujan College, University of
+> Delhi.
 
 ---
 
@@ -423,5 +438,5 @@ bootstrap uses 2,000 draws.
 
 The code is released for academic and policy use.  The underlying data remain
 subject to the terms of the Ministry of Education (AISHE) and the Open
-Government Data Platform India.  Please cite the original sources when reusing
-the data.
+Government Data Platform India (GODL-India).  Please cite the original sources
+when reusing the data.

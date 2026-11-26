@@ -27,6 +27,7 @@ STEPS = [
     ("extract_aishe.py", "Extract AISHE tables and validate against the PDF"),
     ("build_dataset.py", "Merge the OGD target with AISHE predictors"),
     ("eda.py", "Descriptive tables and figures 01-04"),
+    ("checks.py", "Log-transform comparison (Table 12) and missingness (Table 13)"),
     ("modeling.py", "Model comparison, inference, diagnostics, figures 05-11"),
     ("projection.py", "2035 scenarios, required density, figures 12-15"),
 ]

@@ -120,16 +120,34 @@ def main() -> int:
     print("\n5. Output inventory")
     tables = sorted(p.name for p in TAB.glob("table*.csv"))
     figures = sorted(p.name for p in FIG.glob("fig*.png"))
-    truth("11 analysis tables are present", len(tables) >= 11, f"n={len(tables)}")
+    truth("at least 14 analysis tables are present", len(tables) >= 14, f"n={len(tables)}")
     truth("15 figures are present", len(figures) == 15, f"n={len(figures)}")
     truth("hyper-parameter table exists",
           (TAB / "table10_hyperparameter_search.csv").exists())
     truth("per-State appendix table exists",
           (TAB / "table11_state_appendix.csv").exists())
+    truth("log-transform table exists",
+          (TAB / "table12_log_transform.csv").exists())
+    truth("skewness table exists",
+          (TAB / "table12b_skewness.csv").exists())
+    truth("missingness table exists",
+          (TAB / "table13_missingness.csv").exists())
     app = pd.read_csv(TAB / "table11_state_appendix.csv")
     truth("appendix covers all 28 States", len(app) == 28, f"n={len(app)}")
     truth("appendix has no missing LOOCV predictions",
           app["loo_pred"].notna().all())
+
+    log_df = pd.read_csv(TAB / "table12_log_transform.csv").set_index("specification")
+    close("raw OLS LOOCV RMSE matches Table 12",
+          log_df.loc["Raw scale (reported)", "loo_rmse"], 6.8644)
+    truth("raw scale beats every log specification on LOOCV RMSE",
+          bool((log_df.loc["Raw scale (reported)", "loo_rmse"]
+                < log_df.drop(index="Raw scale (reported)")["loo_rmse"]).all()))
+    skew_df = pd.read_csv(TAB / "table12b_skewness.csv").set_index("variable")
+    close("PTR raw skewness", skew_df.loc["ptr", "raw_skew"], 2.0505)
+    miss_df = pd.read_csv(TAB / "table13_missingness.csv")
+    truth("missingness table documents Ladakh and Lakshadweep",
+          {"Ladakh", "Lakshadweep"}.issubset(set(miss_df["unit"])))
 
     print("\n6. Data provenance")
     validation = (PROC / "extraction_validation.txt").read_text(encoding="utf-8")
@@ -140,16 +158,34 @@ def main() -> int:
     truth("raw-file checksums are recorded",
           (PROC.parent / "raw" / "SHA256SUMS.txt").exists())
 
-    print("\n7. Report inputs")
+    print("\n7. Paper and report inputs")
+    import re
+    paper_dir = FIG.parent.parent / "paper"
+    paper_tex = paper_dir / "paper.tex"
+    truth("LaTeX paper source exists", paper_tex.exists())
+    truth("compiled paper.pdf exists", (paper_dir / "paper.pdf").exists())
+    if paper_tex.exists():
+        tex_parts = [paper_tex.read_text(encoding="utf-8")]
+        for sec in sorted((paper_dir / "sections").glob("*.tex")):
+            tex_parts.append(sec.read_text(encoding="utf-8"))
+        full_tex = "\n".join(tex_parts)
+        truth("LaTeX source contains no unresolved template tokens",
+              not re.search(r"\{\{[A-Z_]+\}\}", full_tex)
+              and "[Author]" not in full_tex
+              and "[Institution]" not in full_tex)
+        truth("LaTeX source states GODL-India licence",
+              "GODL-India" in full_tex)
+        for fig in figures:
+            truth(f"paper references figure: {fig}", fig in full_tex)
+        truth("LaTeX source declares AI-tool use", "Use of AI tools" in full_tex)
+
     report = (FIG.parent.parent / "report" / "report.md")
-    truth("journal-format report source exists", report.exists())
+    truth("Markdown report source exists", report.exists())
     if report.exists():
         text = report.read_text(encoding="utf-8")
         truth("report contains no unresolved template tokens",
               "{{" not in text)
         truth("report quotes the 50% target", "50%" in text)
-        for fig in figures:
-            truth(f"figure referenced: {fig}", fig in text)
         truth("report declares AI-tool use", "Use of AI tools" in text)
 
     print(f"\n{checks - len(failures)}/{checks} checks passed.")
